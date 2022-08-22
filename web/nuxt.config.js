@@ -47,27 +47,6 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
-    [
-      '@nuxtjs/firebase',
-      {
-        config: {
-          apiKey: process.env.apiKey,
-          authDomain: process.env.authDomain,
-          databaseURL: process.env.databaseURL,
-          projectId: process.env.projectId,
-          storageBucket: process.env.storageBucket,
-          messagingSenderId: process.env.messagingSenderId,
-          appId: process.env.appId,
-          measurementId: process.env.measurementId
-        },
-        services: {
-          auth: {
-            persistence: 'local',
-            ssr: false
-          }
-        }
-      }
-    ],
     '@nuxtjs/auth-next'
   ],
 
@@ -114,10 +93,10 @@ export default {
 
   auth: {
     redirect: {
-      login: '/login',
+      login: '/user/login',
       logout: '/',
       callback: false,
-      home: '/'
+      home: '/home'
     },
     strategies: {
       laravelSanctum: {
@@ -142,8 +121,7 @@ export default {
           }
         }
       }
-    },
-    vuex: false
+    }
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -180,5 +158,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {}
+  build: {
+    loadingScreen: false
+  }
 }

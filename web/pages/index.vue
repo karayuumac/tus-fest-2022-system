@@ -18,16 +18,46 @@
                   来場者の人数により、<span class="blue--text font-weight-bold">入場制限等を設ける場合がございます</span>。あらかじめご了承ください。
                 </li>
               </ul>
-              <v-row class="mt-3 mb-2">
+              <v-row v-if="!isLoggedIn" class="mt-4 mb-2">
                 <v-btn
                   outlined
                   color="blue"
                   class="mx-auto"
-                  @click="$router.push('register/condition')"
+                  @click="$router.push('user/condition')"
                 >
                   事前予約を行う
                 </v-btn>
+                <v-btn
+                  outlined
+                  color="blue"
+                  class="mx-auto"
+                  @click="$router.push('user/login')"
+                >
+                  すでに予約済みの方はこちら
+                </v-btn>
               </v-row>
+              <v-row v-else class="mt-4 mb-2">
+                <v-btn
+                  outlined
+                  color="blue"
+                  class="mx-auto"
+                  @click="$router.push('user/login')"
+                >
+                  予約情報の確認はこちら
+                </v-btn>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <v-expansion-panel>
+            <v-expansion-panel-header>在校生・大学関係者・理大祭関係者の方々</v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <ul>
+                <li>在校生・大学関係者・理大祭関係者の方々の入場予約は<span class="blue--text font-weight-bold">不要</span>です。</li>
+                <li class="mt-3">
+                  入場の際に学生証等（在校生・大学関係者・理大祭関係者であることを証明できるもの）の提示をお願いいたします。
+                </li>
+              </ul>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -44,7 +74,12 @@ import CardHeader from '~/components/ui/CardHeader.vue'
   components: { CardHeader }
 })
 export default class Register extends Vue {
-  panel = [0]
+  panel = [0, 1]
+  isLoggedIn = false
+
+  mounted () {
+    this.isLoggedIn = this.$store.$auth.loggedIn
+  }
 }
 </script>
 

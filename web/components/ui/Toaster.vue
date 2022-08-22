@@ -7,6 +7,7 @@
     text
     :timeout="toast.timeout"
     :color="toast.color"
+    data-cy="snackbar"
   >
     {{ toast.message }}
     <template #action="{ attrs }">

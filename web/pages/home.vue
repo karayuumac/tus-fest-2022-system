@@ -10,19 +10,23 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { ToasterStore } from '~/utils/store-accsessor'
 
 @Component({
-  middleware: 'auth'
+  middleware: 'redirectIfNotAuthenticated'
 })
-export default class About extends Vue {
+export default class Home extends Vue {
   name = ''
   email = ''
 
-  mounted () {
-    console.info(this.$auth.user)
-  }
-
   logout (): void {
+    this.$auth.logout()
+    ToasterStore.setToast({
+      message: 'ログアウトしました',
+      timeout: 3000,
+      color: 'success'
+    })
+    this.$router.push('/')
   }
 }
 </script>

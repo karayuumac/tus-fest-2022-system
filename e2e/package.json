@@ -1,0 +1,18 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "cypress:install": "./node_modules/cypress/bin/cypress install",
+    "cypress:verify": "./node_modules/cypress/bin/cypress verify",
+    "cypress:run": "./node_modules/cypress/bin/cypress run",
+    "cypress:open": "./node_modules/cypress/bin/cypress open",
+    "db:reset": "docker-compose exec -T api php artisan migrate:refresh --seed"
+  },
+  "dependencies": {
+    "cypress": "^10.6.0",
+    "tsc": "^2.0.4",
+    "typescript": "^4.7.4"
+  }
+}
