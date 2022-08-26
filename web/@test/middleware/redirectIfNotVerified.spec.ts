@@ -19,7 +19,7 @@ describe('redirectIfNotVerified middleware', () => {
       redirect: mockRedirect
     } as any as Context)
 
-    expect(mockRedirect).toHaveBeenCalledWith('/login')
+    expect(mockRedirect).toHaveBeenCalledWith('/user/login')
     expect(ToasterStore.getToast).toEqual({
       message: 'ログインしてください',
       timeout: 3000,

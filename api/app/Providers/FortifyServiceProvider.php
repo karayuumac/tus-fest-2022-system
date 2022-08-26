@@ -50,8 +50,8 @@ class FortifyServiceProvider extends ServiceProvider
       return (new MailMessage)
         ->subject('パスワードのリセット')
         ->line('以下のボタンをクリックして、パスワードリセットを行ってください、')
-        ->action('パスワードのリセット', config('app.frontend_url').'/user/reset-password/'.
-          $notifiable->email.'/'.$token)
+        ->action('パスワードのリセット', config('app.frontend_url').'/user/reset-password?email='.
+          $notifiable->email.'&token='.$token)
         ->line('パスワードのリセットは' .
           config('auth.passwords.' . config('auth.defaults.passwords') . '.expire') .
           '分以内に行ってください。' .
