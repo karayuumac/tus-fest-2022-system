@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
-    <v-card max-width="700px" min-width="400px" class="mx-auto">
+    <v-card max-width="750px" min-width="400px" class="mx-auto">
       <CardHeader title="ポータルサイト" />
 
       <v-card-text class="font-size-normal">
-        <div>2022年度の野田地区理大祭は、事前予約によるチケット入場制といたします。</div>
-        <div class="mt-2">
+        <p>
+          2022年度の野田地区理大祭は、事前予約によるチケット入場制といたします。<br>
           理大祭への参加を希望される方は、下記の注意事項をお読みの上、事前予約を行ってください。
-        </div>
+        </p>
         <v-expansion-panels v-model="panel" accordion class="mt-4" multiple>
           <v-expansion-panel>
             <v-expansion-panel-header>学外からお越しの方（在校生のご家族を含む）</v-expansion-panel-header>
@@ -23,17 +23,17 @@
                   outlined
                   color="blue"
                   class="mx-auto"
-                  @click="$router.push('user/condition')"
+                  @click="$router.push('/user/condition')"
                 >
-                  事前予約を行う
+                  ユーザー登録を行う
                 </v-btn>
                 <v-btn
                   outlined
                   color="blue"
                   class="mx-auto"
-                  @click="$router.push('user/login')"
+                  @click="$router.push('/user/login')"
                 >
-                  すでに予約済みの方はこちら
+                  すでにユーザー登録済みの方はこちら
                 </v-btn>
               </v-row>
               <v-row v-else class="mt-4 mb-2">
@@ -41,9 +41,9 @@
                   outlined
                   color="blue"
                   class="mx-auto"
-                  @click="$router.push('user/login')"
+                  @click="$router.push('/home')"
                 >
-                  予約情報の確認はこちら
+                  予約の確認はこちら
                 </v-btn>
               </v-row>
             </v-expansion-panel-content>
@@ -73,12 +73,12 @@ import CardHeader from '~/components/ui/CardHeader.vue'
 @Component({
   components: { CardHeader }
 })
-export default class Register extends Vue {
+export default class Index extends Vue {
   panel = [0, 1]
   isLoggedIn = false
 
   mounted () {
-    this.isLoggedIn = this.$store.$auth.loggedIn
+    this.isLoggedIn = this.$auth.loggedIn
   }
 }
 </script>
@@ -86,5 +86,6 @@ export default class Register extends Vue {
 <style lang="scss" scoped>
 .font-size-normal {
   font-size: 16px;
+  line-height: 25px;
 }
 </style>

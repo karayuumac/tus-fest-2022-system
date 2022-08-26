@@ -16,4 +16,5 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/reset-password/{token}', ResetPasswordController::class)->name('password.reset');
+Route::get('/auth/reset-password/{token}', ResetPasswordController::class)
+  ->name('password.reset');

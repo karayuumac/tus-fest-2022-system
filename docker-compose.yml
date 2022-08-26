@@ -49,6 +49,9 @@ services:
       SESSION_DOMAIN: 'localhost'
       SANCTUM_STATEFUL_DOMAINS: 'localhost'
       FRONTEND_URL: 'http://localhost'
+      MAIL_DRIVER: 'smtp'
+      MAIL_HOST: mail
+      MAIL_PORT: '1025'
     volumes:
       - ./api:/app
     expose:
@@ -57,6 +60,7 @@ services:
     restart: always
     depends_on:
       - db
+      - mail
 
   db:
     image: mysql:8.0
@@ -72,5 +76,10 @@ services:
     ports:
       - "3306:3306"
 
+  mail:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+      - "1025:1025"
 volumes:
   mysql:

@@ -1,0 +1,30 @@
+name: Build and Test
+on: [push, pull_request]
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Install Dependencies
+        run: yarn install
+        working-directory: ./web
+      - name: Build
+        run: yarn build
+        working-directory: ./web
+      - name: Run test
+        run: yarn test
+        working-directory: ./web
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./web

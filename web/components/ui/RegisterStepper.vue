@@ -1,6 +1,6 @@
 <template>
-  <v-stepper alt-labels outlined>
-    <v-stepper-header v-model="step">
+  <v-stepper v-model="step" alt-labels outlined>
+    <v-stepper-header>
       <v-stepper-step
         step="1"
         :complete="step > 1"
@@ -23,7 +23,19 @@
         step="3"
         :complete="step > 3"
       >
-        予約
+        <div class="text-center">
+          メールアドレス<br>
+          確認
+        </div>
+      </v-stepper-step>
+
+      <v-divider />
+
+      <v-stepper-step
+        step="4"
+        :complete="step > 4"
+      >
+        登録完了
       </v-stepper-step>
     </v-stepper-header>
   </v-stepper>

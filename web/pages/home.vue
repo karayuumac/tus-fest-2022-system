@@ -11,9 +11,10 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { ToasterStore } from '~/utils/store-accsessor'
+import redirectIfNotVerified from '~/middleware/redirectIfNotVerified'
 
 @Component({
-  middleware: 'redirectIfNotAuthenticated'
+  middleware: [redirectIfNotVerified]
 })
 export default class Home extends Vue {
   name = ''

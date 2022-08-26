@@ -1,26 +1,26 @@
 module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
-    // this line is optional and the tilde shortcut
-    // will not be used in this tutorial
-    '^~/(.*)$': '<rootDir>/$1'
+    '^~/(.*)$': '<rootDir>/$1',
+    '^vue$': 'vue/dist/vue.common.js'
   },
+  moduleFileExtensions: [
+    'ts',
+    'js',
+    'vue',
+    'json'
+  ],
   transform: {
-    '^.+\\.ts?$': 'ts-jest',
+    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.js$': 'babel-jest',
     '.*\\.(vue)$': 'vue-jest'
   },
-  moduleFileExtensions: ['ts', 'js', 'vue', 'json'],
-
+  collectCoverage: true,
   collectCoverageFrom: [
-    'components/**/*.vue',
-    'layouts/**/*.vue',
-    'pages/**/*.vue',
-    'lib/**/*.ts',
-    'plugins/**/*.ts',
-    'store/**/*.ts'
+    '<rootDir>/components/**/*.vue',
+    '<rootDir>/store/**/*.ts',
+    '<rootDir>/pages/**/*.vue'
   ],
-
   testEnvironment: 'jsdom',
-
   setupFiles: ['./@test/setup.ts']
 }

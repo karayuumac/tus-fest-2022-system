@@ -4,8 +4,9 @@
  * @param query
  * @param redirect
  */
-// @ts-ignore
-export default function ({ query, redirect }) {
+import { Context } from '@nuxt/types'
+
+export default function ({ query, redirect }: Context) {
   if (!query.condition) {
     redirect('/register/condition')
   }

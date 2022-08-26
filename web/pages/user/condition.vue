@@ -1,9 +1,9 @@
 <template>
   <v-container fluid>
-    <v-card max-width="700px" class="mx-auto">
+    <v-card max-width="750px" class="mx-auto">
       <CardHeader />
       <v-card-text class="font-size-normal">
-        <RegisterStepper v-model.number="step" />
+        <RegisterStepper v-model="step" />
         <v-form class="mt-4" @submit.prevent>
           <div>
             2022年度の野田地区理大祭に参加される
@@ -29,9 +29,9 @@
               <v-expansion-panel-content>
                 <ul>
                   <li>
-                    グループで来場される場合であっても、
-                    <span class="blue--text font-weight-bold">１人１回のユーザー登録が必要</span>
-                    です。
+                    グループで来場される場合、
+                    <span class="blue--text font-weight-bold">代表者がユーザー登録を行ってください</span>
+                    。
                   </li>
                 </ul>
               </v-expansion-panel-content>
@@ -51,22 +51,22 @@
                 <ol class="mt-4">
                   <li>参加にあたっては、当日自宅において検温をしていただき、発熱等の風邪の症状がみられる場合は、理大祭に参加しないでください。</li>
                   <li class="mt-2">
-                    理大祭参加日１週間前以降に体調不良や濃厚接触・感染の疑いがある場合は、理大祭に参加しないでください。
+                    理大祭参加日１週間前以降に体調不良や濃厚接触・感染の疑いがある場合は、理大祭に参加しないでください。<br>
                     また、同居家族や身近な知人に感染の疑いがないことを確認してください。
                   </li>
                   <li class="mt-2">
-                    新型コロナウイルス接触確認アプリ（COCOA）の使用をお願いいたします。
+                    新型コロナウイルス接触確認アプリ（COCOA）の使用をお願いいたします。<br>
                     （ただし、使用している携帯電話がCOCOAに対応していない場合、あるいは携帯電話をお持ちでない場合は必要ありません。）
                   </li>
                   <li class="mt-2">
-                    理大祭参加にあたっては、必ずマスクを着用してください。（不織布を推奨します。）
+                    理大祭参加にあたっては、必ずマスクを着用してください。（不織布を推奨します。）<br>
                     また、大声を発することはご遠慮いただき、密集を避けていただくようお願いいたします。
                   </li>
                   <li class="mt-2">
                     理大祭参加にあたっては、受付において検温・手指消毒のご協力をお願いいたします。
                   </li>
                   <li class="mt-2">
-                    飲食スペースにおいては、密を避けるため短時間の利用をお願いいたします。
+                    飲食スペースにおいては、密を避けるため短時間の利用をお願いいたします。<br>
                     また、黙食を基本とし、会話をする際は必ずマスクを着用していただきますようお願いいたします。
                   </li>
                   <li class="mt-2">
@@ -111,9 +111,11 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import CardHeader from '~/components/ui/CardHeader.vue'
 import RegisterStepper from '~/components/ui/RegisterStepper.vue'
+import redirectIfAuthenticated from '~/middleware/redirectIfAuthenticated'
 
 @Component({
-  components: { RegisterStepper, CardHeader }
+  components: { RegisterStepper, CardHeader },
+  middleware: [redirectIfAuthenticated]
 })
 export default class Condition extends Vue {
   step = 1
@@ -133,6 +135,7 @@ export default class Condition extends Vue {
 <style lang="scss" scoped>
 .font-size-normal {
   font-size: 16px;
+  line-height: 25px;
 }
 
 .v-breadcrumbs {

@@ -1,11 +1,12 @@
 <template>
   <v-container fluid>
-    <v-card max-width="700px" class="mx-auto">
+    <v-card max-width="750px" class="mx-auto">
+      <CardHeader />
       <v-card-title class="text-center justify-center">
         ログイン
       </v-card-title>
       <v-divider />
-      <v-card-text>
+      <v-card-text class="font-size-normal">
         <v-container>
           <v-form ref="form" @submit.prevent>
             <v-text-field
@@ -28,17 +29,26 @@
               required
               @click:append="show_password = !show_password"
             />
-            <v-row justify="center" class="mt-1">
-              <v-btn
-                variant="outlined"
-                color="primary"
-                class="justify-center"
-                data-cy="button"
-                @click="login"
-              >
-                ログイン
-              </v-btn>
-            </v-row>
+            <div class="d-flex flex-column">
+              <div class="mt-3 mx-auto">
+                <v-btn
+                  variant="outlined"
+                  color="primary"
+                  data-cy="button"
+                  @click="login"
+                >
+                  ログイン
+                </v-btn>
+              </div>
+
+              <div class="mt-4 mx-auto">
+                <a
+                  @click="$router.push('/user/reset')"
+                >
+                  パスワードをお忘れの方はこちら
+                </a>
+              </div>
+            </div>
           </v-form>
         </v-container>
       </v-card-text>
@@ -51,9 +61,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import { mdiEye, mdiEyeOff } from '@mdi/js'
 import { VFormInterface } from '~/interface/VFormInterface'
 import { ToasterStore } from '~/store'
+import { email_rules, password_rules } from '~/utils/rules'
+import redirectIfAuthenticated from '~/middleware/redirectIfAuthenticated'
+import CardHeader from '~/components/ui/CardHeader.vue'
 
 @Component({
-  middleware: 'auth'
+  components: { CardHeader },
+  middleware: [redirectIfAuthenticated]
 })
 export default class Login extends Vue {
   email = ''
@@ -61,13 +75,8 @@ export default class Login extends Vue {
   show_password = false
   mdi_eye = mdiEye
   mdi_eye_off = mdiEyeOff
-  email_rules = [
-    (email: string): boolean | string => !!email || 'メールアドレスを入力してください.'
-  ]
-
-  password_rules = [
-    (password: string): boolean | string => !!password || 'パスワードを入力してください.'
-  ]
+  email_rules = email_rules
+  password_rules = password_rules
 
   login (): void {
     if (!(this.$refs.form as VFormInterface).validate()) {
@@ -105,5 +114,8 @@ export default class Login extends Vue {
 </script>
 
 <style scoped>
-
+.font-size-normal {
+  font-size: 16px;
+  line-height: 25px;
+}
 </style>
