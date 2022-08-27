@@ -15,8 +15,8 @@ return [
 
     'reset' => 'Your password has been reset!',
     'sent' => 'We have emailed your password reset link!',
-    'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
+    'throttled' => '時間を空けて再度操作してください。',
+    'token' => 'パスワードの再設定用URLに誤りがあります。',
     'user' => "入力されたメールアドレスは登録されていません。",
 
 ];
