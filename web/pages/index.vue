@@ -19,32 +19,49 @@
                 </li>
               </ul>
               <v-row v-if="!isLoggedIn" class="mt-4 mb-2">
-                <v-btn
-                  outlined
-                  color="blue"
-                  class="mx-auto"
-                  @click="$router.push('/user/condition')"
+                <v-col
+                  cols="12"
+                  sm="6"
+                  class="d-flex justify-center"
                 >
-                  ユーザー登録を行う
-                </v-btn>
-                <v-btn
-                  outlined
-                  color="blue"
-                  class="mx-auto"
-                  @click="$router.push('/user/login')"
+                  <v-btn
+                    outlined
+                    color="blue"
+                    @click="$router.push('/user/condition')"
+                  >
+                    ユーザー登録を行う
+                  </v-btn>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  sm="6"
+                  class="d-flex justify-center"
                 >
-                  すでにユーザー登録済みの方はこちら
-                </v-btn>
+                  <v-btn
+                    outlined
+                    color="blue"
+                    @click="$router.push('/user/login')"
+                  >
+                    すでにユーザー登録済みの方はこちら
+                  </v-btn>
+                </v-col>
               </v-row>
+
               <v-row v-else class="mt-4 mb-2">
-                <v-btn
-                  outlined
-                  color="blue"
-                  class="mx-auto"
-                  @click="$router.push('/home')"
+                <v-col
+                  cols="12"
+                  class="d-flex justify-center"
                 >
-                  予約の確認はこちら
-                </v-btn>
+                  <v-btn
+                    outlined
+                    color="blue"
+                    class="mx-auto"
+                    @click="$router.push('/home')"
+                  >
+                    予約の確認はこちら
+                  </v-btn>
+                </v-col>
               </v-row>
             </v-expansion-panel-content>
           </v-expansion-panel>

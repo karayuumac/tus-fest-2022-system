@@ -29,16 +29,25 @@
               required
               @click:append="show_password = !show_password"
             />
+
+            <v-row>
+              <v-checkbox
+                v-model="remember"
+                class="mx-auto"
+                label="ログイン状態を保持する"
+              />
+            </v-row>
+
             <div class="d-flex flex-column">
               <div class="mt-3 mx-auto">
-                <v-btn
-                  variant="outlined"
-                  color="primary"
+                <SingleSubmitButton
+                  outlined
+                  color="blue"
                   data-cy="button"
-                  @click="login"
+                  :on-click="login"
                 >
                   ログイン
-                </v-btn>
+                </SingleSubmitButton>
               </div>
 
               <div class="mt-4 mx-auto">
@@ -64,21 +73,24 @@ import { ToasterStore } from '~/store'
 import { email_rules, password_rules } from '~/utils/rules'
 import redirectIfAuthenticated from '~/middleware/redirectIfAuthenticated'
 import CardHeader from '~/components/ui/CardHeader.vue'
+import SingleSubmitButton from '~/components/ui/SingleSubmitButton.vue'
 
 @Component({
-  components: { CardHeader },
+  components: { SingleSubmitButton, CardHeader },
   middleware: [redirectIfAuthenticated]
 })
 export default class Login extends Vue {
   email = ''
   password = ''
   show_password = false
+  remember = false
+
   mdi_eye = mdiEye
   mdi_eye_off = mdiEyeOff
   email_rules = email_rules
   password_rules = password_rules
 
-  login (): void {
+  async login () {
     if (!(this.$refs.form as VFormInterface).validate()) {
       ToasterStore.setToast({
         message: 'ユーザー名またはパスワードを正しく入力してください',
@@ -86,11 +98,12 @@ export default class Login extends Vue {
         color: 'error'
       })
     } else {
-      this.$auth
+      await this.$auth
         .loginWith('laravelSanctum', {
           data: {
             email: this.email,
-            password: this.password
+            password: this.password,
+            remember: this.remember
           }
         })
         .then(() => {
