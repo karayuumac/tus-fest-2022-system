@@ -5,7 +5,9 @@
       outlined
       :color="event.isFree ? 'blue' : 'green darken-1'"
       large
-      @click="() => {}"
+      @click="() => {
+        $router.push(`/event/${event.getId}`)
+      }"
     >
       <span class="font-weight-bold text-subtitle-1">
         <span v-if="event.isFree">予約</span>

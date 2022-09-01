@@ -24,8 +24,7 @@
         :complete="step > 3"
       >
         <div class="text-center">
-          メールアドレス<br>
-          確認
+          メールアドレス<br>確認
         </div>
       </v-stepper-step>
 

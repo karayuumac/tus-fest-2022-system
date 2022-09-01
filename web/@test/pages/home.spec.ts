@@ -24,13 +24,18 @@ describe('home.vue', () => {
         },
         $router: {
           push: mockRouter
+        },
+        $axios: {
+          $get: jest.fn().mockResolvedValue({
+            data: []
+          })
         }
       },
       localVue,
       vuetify
     })
 
-    const logoutButton = wrapper.find('.v-btn')
+    const logoutButton = wrapper.find('#logout')
     expect(logoutButton.text()).toBe('ログアウト')
 
     logoutButton.trigger('click')

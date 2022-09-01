@@ -58,7 +58,7 @@
         </v-simple-table>
 
         <h3 class="text-center mt-3">
-          予約情報
+          イベント情報
         </h3>
         <v-divider class="mt-2" />
         <v-simple-table class="pa-2">
@@ -87,7 +87,7 @@
             </tbody>
           </template>
         </v-simple-table>
-        <v-btn @click="logout">
+        <v-btn id="logout" @click="logout">
           ログアウト
         </v-btn>
       </v-card-text>
@@ -97,7 +97,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { AxiosResponse } from 'axios'
 import { ToasterStore } from '~/utils/store-accsessor'
 import redirectIfNotVerified from '~/middleware/redirectIfNotVerified'
 import CardHeader from '~/components/ui/CardHeader.vue'
@@ -128,9 +127,9 @@ export default class Home extends Vue {
 
   mounted () {
     this.$axios
-      .get<any, any>('/api/event')
-      .then((res: AxiosResponse<{data: EventInterface[]}>) => {
-        for (const event of res.data.data) {
+      .$get('/api/event')
+      .then((res: {data: EventInterface[]}) => {
+        for (const event of res.data) {
           this.events.push(
             new Event(
               event.id,
