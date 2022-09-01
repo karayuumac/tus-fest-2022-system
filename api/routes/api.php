@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth:sanctum'])->get('/user', [UserController::class, 'get']);
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+  Route::group(['prefix' => 'event'], function () {
+    Route::get('/', [EventController::class, 'index'])->name('event.index');
+  });
+});
