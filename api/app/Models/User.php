@@ -64,4 +64,14 @@ class User extends Authenticatable implements MustVerifyEmail
   protected $appends = [
     'profile_photo_url',
   ];
+
+  public function reserves()
+  {
+    return $this->hasMany(Reserve::class, 'reserve_user_id');
+  }
+
+  public function alreadyReserved()
+  {
+    return $this->reserves->count() > 0;
+  }
 }

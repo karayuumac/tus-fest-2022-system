@@ -112,7 +112,8 @@ interface EventInterface {
   end_date: string,
   price: string,
   status: string,
-  visible: string
+  visible: string,
+  max_reservation_count: number
 }
 
 @Component({
@@ -139,7 +140,8 @@ export default class Home extends Vue {
               event.begin_date,
               event.end_date,
               Number.parseInt(event.price),
-              event.status
+              event.status,
+              event.max_reservation_count
             )
           )
         }

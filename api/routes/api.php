@@ -22,5 +22,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/', [EventController::class, 'index'])->name('event.index');
     Route::get('/{id}', [EventController::class, 'get'])->name('event.get')
       ->middleware('event.visible');
+    Route::post('/{id}/reserve', [EventController::class, 'reserve'])->name('event.reserve')
+      ->middleware('event.visible');
   });
 });

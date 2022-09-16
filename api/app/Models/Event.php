@@ -17,6 +17,12 @@ class Event extends Model
     'end_date',
     'price',
     'status',
-    'visible'
+    'visible',
+    'max_reservation_count'
   ];
+
+  public function reserves()
+  {
+    return $this->hasMany(Reserve::class, 'event_id');
+  }
 }

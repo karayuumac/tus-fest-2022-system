@@ -23,6 +23,8 @@ return new class extends Migration {
       $table->enum('status', Status::statuses);
       $table->boolean('visible')->default(false);
 
+      $table->integer('max_reservation_count')->default(4);
+
       $table->timestamps();
     });
   }

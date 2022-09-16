@@ -1,7 +1,8 @@
 <template>
   <v-btn
     color="blue"
-    outlined
+    :block="block"
+    :outlined="outlined"
     :disabled="disabled || processing"
     @click="handleClick"
   >
@@ -16,6 +17,8 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 export default class SingleSubmitButton extends Vue {
   @Prop({ type: Function, required: true }) onClick!: Function
   @Prop({ type: Boolean, default: false }) disabled!: boolean
+  @Prop({ type: Boolean, default: false }) block!: boolean
+  @Prop({ type: Boolean, default: false }) outlined!: boolean
 
   processing = false
 

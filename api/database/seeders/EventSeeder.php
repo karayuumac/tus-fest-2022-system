@@ -22,7 +22,8 @@ class EventSeeder extends Seeder
       'end_date' => Carbon::create(2022, 11, 27, 17, 00, 00),
       'price' => 0,
       'status' => Status::LOTTERY_APPLICATIONS,
-      'visible' => 1
+      'visible' => 1,
+      'max_reservation_count' => 2,
     ]);
 
     Event::create([
@@ -35,7 +36,8 @@ class EventSeeder extends Seeder
       'end_date' => Carbon::create(2022, 11, 27, 17, 00, 00),
       'price' => 0,
       'status' => Status::LOTTERY_APPLICATIONS,
-      'visible' => 1
+      'visible' => 1,
+      'max_reservation_count' => 2,
     ]);
 
     Event::create([

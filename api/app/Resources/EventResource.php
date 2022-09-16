@@ -24,6 +24,7 @@ class EventResource extends JsonResource
       'price' => $this->price,
       'status' => $this->status,
       'visible' => $this->visible,
+      'max_reservation_count' => $this->max_reservation_count,
       'created_at' => $this->created_at,
       'updated_at' => $this->updated_at,
     ];

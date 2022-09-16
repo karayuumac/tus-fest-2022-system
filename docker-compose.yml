@@ -52,6 +52,7 @@ services:
       MAIL_DRIVER: 'smtp'
       MAIL_HOST: mail
       MAIL_PORT: '1025'
+      SESSION_DRIVER: 'cookie'
     volumes:
       - ./api:/app
     expose:

@@ -12,6 +12,7 @@ export class Event {
   private readonly endDate: Dayjs
   private readonly price: number
   private readonly status: Status
+  private readonly maxReservationCount: number
 
   constructor (
     id: number,
@@ -21,7 +22,8 @@ export class Event {
     beginDate: string,
     endDate: string,
     price: number,
-    status: string
+    status: string,
+    maxReservationCount: number
   ) {
     locale('ja')
 
@@ -33,6 +35,7 @@ export class Event {
     this.endDate = dayjs(endDate)
     this.price = price
     this.status = toStatus(status)
+    this.maxReservationCount = maxReservationCount
   }
 
   get getId () {
@@ -83,6 +86,10 @@ export class Event {
     return this.price === 0
   }
 
+  get getPrice () {
+    return this.price
+  }
+
   get isBeforeApplication () {
     return dayjs().isBefore(this.applicationStartDate)
   }
@@ -116,5 +123,9 @@ export class Event {
     } else if (this.hasFinishedLottery) {
       return '抽選終了'
     }
+  }
+
+  get getMaxReservationCount () {
+    return this.maxReservationCount
   }
 }
