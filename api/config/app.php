@@ -216,4 +216,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+  'stripe_endpoint_secret' => env('STRIPE_ENDPOINT_SECRET'),
+  'stripe_publishable_key' => env('STRIPE_PUBLISHABLE_KEY'),
+  'stripe_secret_key' => env('STRIPE_SECRET_KEY'),
 ];

@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+  'webhook' => [
+    'secret' => env('STRIPE_ENDPOINT_SECRET'),
+    'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
+  ],
 ];

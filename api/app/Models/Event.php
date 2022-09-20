@@ -21,8 +21,18 @@ class Event extends Model
     'max_reservation_count'
   ];
 
+  public function isFree()
+  {
+    return $this->price === 0;
+  }
+
   public function reserves()
   {
     return $this->hasMany(Reserve::class, 'event_id');
+  }
+
+  public function charges()
+  {
+    return $this->hasMany(Charge::class, 'event_id');
   }
 }

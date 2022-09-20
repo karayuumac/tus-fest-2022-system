@@ -6,33 +6,37 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Model, Prop, Vue } from 'nuxt-property-decorator'
+import { Component, Model, Prop, Vue } from 'nuxt-property-decorator'
+import { SeatSelectionStore } from '~/utils/store-accsessor'
 
 @Component
 export default class Seat extends Vue {
   @Prop({ type: String, required: true }) row!: string
   @Prop({ type: Number, required: true }) col!: number
   @Model('update', { type: Boolean, default: false }) hasSold!: boolean
-  @Model('update', { type: Boolean, required: true }) selected!: boolean
+
+  get getSeatName () {
+    return this.row + '-' + this.col
+  }
 
   get getClass () {
     if (this.hasSold) {
       return 'seat-sold'
-    } else if (this.selected) {
+    } else if (SeatSelectionStore.exists(this.getSeatName)) {
       return 'seat-selected'
     } else {
       return 'seat'
     }
   }
 
-  @Emit()
   select () {
     if (this.hasSold) {
       return null
     }
-    return {
-      enable: !this.selected,
-      seatName: this.row + '-' + this.col
+    if (!SeatSelectionStore.exists(this.getSeatName)) {
+      SeatSelectionStore.insertSelection(this.getSeatName)
+    } else {
+      SeatSelectionStore.removeSelection(this.getSeatName)
     }
   }
 }

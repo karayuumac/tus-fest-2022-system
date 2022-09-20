@@ -113,7 +113,7 @@
             </SingleSubmitButton>
           </v-card-actions>
         </v-card>
-        <SeatSelector v-else />
+        <SeatSelector v-else :max-selection="event.getMaxReservationCount" :price="event.getPrice" />
 
         <h3 class="text-center mt-3">
           注意事項
@@ -213,10 +213,10 @@ import EventOpeningDate from '~/components/ui/event/EventOpeningDate.vue'
 import EventStatusCol from '~/components/ui/event/EventStatusCol.vue'
 import SingleSubmitButton from '~/components/ui/SingleSubmitButton.vue'
 import { ToasterStore } from '~/utils/store-accsessor'
-import SeatSelector from "~/components/ui/event/SeatSelector.vue";
+import SeatSelector from '~/components/ui/event/SeatSelector.vue'
 
 @Component({
-  components: {SeatSelector, SingleSubmitButton, EventStatusCol, EventOpeningDate, CardHeader },
+  components: { SeatSelector, SingleSubmitButton, EventStatusCol, EventOpeningDate, CardHeader },
   middleware: [redirectIfNotVerified, redirectIfNotApplication]
 })
 export default class EventIndex extends Vue {
@@ -262,7 +262,7 @@ export default class EventIndex extends Vue {
       .$post(`/api/event/${event_id}/reserve`, {
         number_of_people: this.selection
       })
-      .then((res) => {
+      .then((_) => {
         // redirect
       })
       .catch((err) => {

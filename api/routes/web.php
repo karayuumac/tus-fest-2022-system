@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\ResetPasswordController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\StripeWebhookController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +17,5 @@ use Inertia\Inertia;
 
 Route::get('/auth/reset-password/{token}', ResetPasswordController::class)
   ->name('password.reset');
+
+// Route::post('stripe/webhook', [StripeWebhookController::class, 'handlePaymentIntentSucceeded']);

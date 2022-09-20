@@ -9,11 +9,13 @@
         "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.3",
+        "laravel/cashier": "^14.1",
         "laravel/fortify": "^1.13",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.11",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "stripe/stripe-php": "^9.6",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
