@@ -77,7 +77,10 @@ import SingleSubmitButton from '~/components/ui/SingleSubmitButton.vue'
 
 @Component({
   components: { SingleSubmitButton, CardHeader },
-  middleware: [redirectIfAuthenticated]
+  middleware: [redirectIfAuthenticated],
+  head: {
+    title: 'ログイン'
+  }
 })
 export default class Login extends Vue {
   email = ''

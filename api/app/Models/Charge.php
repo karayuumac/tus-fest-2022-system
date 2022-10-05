@@ -23,4 +23,9 @@ class Charge extends Model
   {
     return $query->where('is_pending', true);
   }
+
+  public function event()
+  {
+    return $this->belongsTo(Event::class, 'event_id');
+  }
 }

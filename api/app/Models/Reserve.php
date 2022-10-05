@@ -10,7 +10,8 @@ class Reserve extends Model
     'event_id',
     'reserve_user_id',
     'ticket_token',
-    'has_used'
+    'has_used',
+    'is_assigned'
   ];
 
   public function event()

@@ -76,7 +76,7 @@ class SeatController extends Controller
 
     try {
       DB::transaction(function () use ($id, $seats, &$checkoutSession, $stripe) {
-        $chargeId = (string) Str::uuid();;
+        $chargeId = (string)Str::uuid();;
         $charge = Charge::create([
           'event_id' => $id,
           'reserved_user_id' => Auth::user()->id,
@@ -105,13 +105,19 @@ class SeatController extends Controller
 
         // Stripeの請求作成
         $checkoutSession = Session::create([
+          'customer_email' => Auth::user()->email,
           'line_items' => [[
             'price' => 'price_1Lk1a2KSt4j2Xc6z372LOdGV', // TODO: change here!
             'quantity' => count($seats)
           ]],
           'mode' => 'payment',
-          'success_url' => 'http://localhost/event/3/success?token='.$chargeId,
-          'cancel_url' => 'http://localhost/event/'.$id
+          'success_url' => 'http://localhost/event/success',
+          'cancel_url' => 'http://localhost/event/' . $id,
+          'payment_intent_data' => [
+            'metadata' => [
+              'charge_model_id' => $charge->id,
+            ]
+          ]
         ]);
 
         RemovePendingSeatJob::dispatch($charge)->delay(15 * 60);
@@ -150,52 +156,5 @@ class SeatController extends Controller
       $charge->delete();
     }
     return response()->json([]);
-  }
-
-/*
-  public function paymentSucceed(Request $request)
-  {
-    $event = null;
-    try {
-      $event = Webhook::constructEvent(
-        $request->getContent(), $_SERVER['HTTP_STRIPE_SIGNATURE'], config('STRIPE_ENDPOINT_SECRET')
-      );
-    } catch (SignatureVerificationException $e) {
-      return response()->json([], 400);
-    }
-
-    switch ($event->type) {
-      case 'checkout.session.async_payment_succeeded':
-        Log::debug($event);
-      default:
-    }
-  }
-*/
-
-  public function validateToken(int $id, Request $request)
-  {
-    $request->validate([
-      'token' => ['required', 'string']
-    ]);
-
-    $charge = Charge::where([
-      'reserved_user_id' => Auth::user()->id,
-      'event_id' => $id,
-      'charge_id' => $request->get('token')
-    ]);
-    if (!$charge->exists()) {
-      return response()->json([], 400);
-    }
-
-    foreach ($charge->first()->seats as $seat) {
-      $seat->update([
-        'ticket_token' => (string) Str::uuid(),
-        'is_pending' => false
-      ]);
-    }
-    $charge->update([
-      'is_pending' => false
-    ]);
-    return response()->json([], 200);
   }
 }

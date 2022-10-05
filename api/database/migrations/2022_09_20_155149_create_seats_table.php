@@ -21,6 +21,8 @@ return new class extends Migration {
       $table->foreign('charge_id')->references('id')->on('charges');
       // チケット表示用トークン
       $table->uuid('ticket_token')->nullable();
+      // 譲渡しているかどうか
+      $table->boolean('is_assigned')->default(false);
       // 使用したか
       $table->boolean('has_used')->default(false);
 

@@ -69,7 +69,10 @@ import redirectIfNotValidQueries from '~/middleware/reset-password/redirectIfNot
 
 @Component({
   components: { SingleSubmitButton, RegisterStepper, CardHeader },
-  middleware: [redirectIfNotValidQueries]
+  middleware: [redirectIfNotValidQueries],
+  head: {
+    title: 'パスワードのリセット'
+  }
 })
 export default class ResetPassword extends Vue {
   email = ''

@@ -72,8 +72,8 @@
                   支払い方法
                 </td>
                 <td>
-                  各イベント当日入場時に受付にてお支払いいただきます。<br>
-                  支払い方法は現金のみとなります。
+                  チケット購入時にお支払いいただきます。<br>
+                  支払い方法はクレジットカードのみとなります。
                 </td>
               </tr>
               <tr>
@@ -100,6 +100,14 @@
                   サービスの特性上、イベント終了後の返金はできません。
                 </td>
               </tr>
+              <tr>
+                <td>
+                  契約の申し込みの撤回（キャンセル）
+                </td>
+                <td>
+                  予約・販売が成立した後の申し込みの撤回（キャンセル）はできません。
+                </td>
+              </tr>
             </tbody>
           </template>
         </v-simple-table>
@@ -112,7 +120,10 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 import CardHeader from '~/components/ui/CardHeader.vue'
 @Component({
-  components: { CardHeader }
+  components: { CardHeader },
+  head: {
+    title: '特定商取引法に基づく表示'
+  }
 })
 export default class Transaction extends Vue {
 }

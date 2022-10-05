@@ -73,11 +73,8 @@
 
           <v-card-text>
             <span class="subheading">
-              <span v-if="event.isFree">
+              <span>
                 予約枚数を選択してください
-              </span>
-              <span v-else>
-                購入枚数を選択してください
               </span>
             </span>
 
@@ -99,18 +96,51 @@
           </v-card-text>
 
           <v-card-actions>
-            <SingleSubmitButton
-              block
-              class="white--text font-weight-bold"
-              :on-click="reserve"
+            <v-dialog
+              v-model="dialog"
+              width="400px"
             >
-              <span v-if="event.isFree">
-                予約する
-              </span>
-              <span v-else>
-                購入する
-              </span>
-            </SingleSubmitButton>
+              <template #activator="{ on, attr }">
+                <v-btn
+                  block
+                  class="white--text font-weight-bold"
+                  color="blue"
+                  v-bind="attr"
+                  v-on="on"
+                >
+                  <span>
+                    予約する
+                  </span>
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="text-h6">
+                    予約の確認
+                  </span>
+                </v-card-title>
+                <v-card-text>
+                  予約しますか？
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer />
+                  <v-btn
+                    color="red"
+                    text
+                    @click="dialog = false"
+                  >
+                    キャンセル
+                  </v-btn>
+                  <v-btn
+                    color="blue"
+                    text
+                    @click="reserve"
+                  >
+                    予約する
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-card-actions>
         </v-card>
         <SeatSelector v-else :max-selection="event.getMaxReservationCount" :price="event.getPrice" />
@@ -120,6 +150,31 @@
         </h3>
         <v-divider class="mt-2" />
         <v-expansion-panels v-model="panel" accordion class="mt-4" multiple>
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              予約・購入にあたって
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <ul>
+                <li>
+                  <span class="blue--text font-weight-bold">
+                    一度予約・購入されたチケットのキャンセルは原則として承ることができません。
+                  </span>
+                  予約・購入内容をよくご確認の上、予約・購入をお願いいたします。
+                </li>
+                <li class="mt-3">
+                  予約・購入されたチケットの譲渡は、身内や知人などの限定的な範囲に限られるものとします。
+                  <span class="blue--text font-weight-bold">
+                    予約・購入されたチケットの転売は固くお断りいたします。
+                  </span>
+                </li>
+                <li class="mt-3">
+                  万が一当日参加されない場合であっても、連絡等は不要です。
+                </li>
+              </ul>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
           <v-expansion-panel>
             <v-expansion-panel-header>
               入場方法について
@@ -134,47 +189,12 @@
                       入場にあたっては、<span class="blue--text font-weight-bold">１人１枚</span>のチケットが必要です。
                     </li>
                     <li class="mt-3">
-                      予約・購入した枚数分のチケットを、「チケット確認画面」にてメールで送信・印刷することが可能です。
+                      予約・購入した枚数分のチケットを、「予約・購入チケット一覧」画面にてメールで送信・印刷することが可能です。
                     </li>
                   </ul>
                 </li>
                 <li class="mt-3">
                   入場時、QRコードが表示された画面、または事前に画面を印刷したものを受付にてご提示ください。
-                </li>
-              </ul>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              抽選について
-            </v-expansion-panel-header>
-            <v-expansion-panel-content>
-              <ul>
-                <li>チケットの発行枚数によっては、抽選を行うことがございます。抽選を行うかどうかは予約受付期間・販売受付期間が終了した後に判断いたします。</li>
-                <li class="mt-3">
-                  抽選を行わない場合、チケットは<span class="blue--text font-weight-bold">予約受付期間・販売受付期間が終了した後に発行されます</span>。
-                </li>
-                <li class="mt-3">
-                  抽選を行う場合、「トップページ」（ログイン直後の画面）にてお知らせいたします。
-                  <ul>
-                    <li class="mt-3">
-                      抽選を行う場合、<span class="blue--text font-weight-bold">予約受付期間・販売受付期間が終了した後に抽選を行います</span>。<br>
-                      抽選に当選された場合にのみチケットを表示・印刷することが可能です。
-                    </li>
-                  </ul>
-                </li>
-                <li class="mt-3">
-                  代表者様がまとめて複数枚のチケットを予約・購入された場合、抽選は予約・購入された複数枚のチケット単位で行われます。
-                  <ul>
-                    <li class="mt-3">
-                      例えば代表者様が２枚のチケットを予約・購入された場合、１枚のチケットが当選し、もう１枚のチケットが落選することはありません。<br>
-                      ２枚のチケットがともに当選するか、落選するかの２パターンとなります。
-                    </li>
-                    <li class="mt-3">
-                      抽選システムの関係上、１枚のチケットを予約・購入された場合と、２枚以上のチケットをまとめて予約・購入された場合の当選確率が異なる場合がございます。あらかじめご了承ください。
-                    </li>
-                  </ul>
                 </li>
               </ul>
             </v-expansion-panel-content>
@@ -188,8 +208,8 @@
               <ul>
                 <li>一部有料にて開催するイベントがございます。イベント情報の「価格」欄をご覧ください。</li>
                 <li class="mt-3">
-                  有料にて開催するイベントは、<span class="blue--text font-weight-bold">受付にて代金をお支払いいただきます</span>。
-                  また、お支払い方法は<span class="blue--text font-weight-bold">現金のみ</span>とさせていただきます。あらかじめご了承ください。
+                  有料にて開催するイベントは、<span class="blue--text font-weight-bold">購入時に代金をお支払いいただきます</span>。
+                  また、お支払い方法は<span class="blue--text font-weight-bold">クレジットカードのみ</span>とさせていただきます。あらかじめご了承ください。
                 </li>
                 <li class="mt-3">
                   <a href="/transaction" target="_blank">特定商取引法に基づく表記</a>も合わせてご覧ください。
@@ -217,9 +237,13 @@ import SeatSelector from '~/components/ui/event/SeatSelector.vue'
 
 @Component({
   components: { SeatSelector, SingleSubmitButton, EventStatusCol, EventOpeningDate, CardHeader },
-  middleware: [redirectIfNotVerified, redirectIfNotApplication]
+  middleware: [redirectIfNotVerified, redirectIfNotApplication],
+  head: {
+    title: 'イベント情報'
+  }
 })
 export default class EventIndex extends Vue {
+  dialog = false
   panel = [0, 1, 2]
   selection = 0
   event: Event = null as unknown as Event
@@ -263,7 +287,13 @@ export default class EventIndex extends Vue {
         number_of_people: this.selection
       })
       .then((_) => {
-        // redirect
+        this.dialog = false
+        this.$router.push('/home')
+        ToasterStore.setToast({
+          message: '予約しました',
+          color: 'success',
+          timeout: 3000
+        })
       })
       .catch((err) => {
         ToasterStore

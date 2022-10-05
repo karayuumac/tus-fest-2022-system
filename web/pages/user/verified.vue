@@ -36,7 +36,10 @@ import redirectIfVerified from '@/middleware/redirectIfVerified'
 
 @Component({
   components: { SingleSubmitButton, RegisterStepper, CardHeader },
-  middleware: [redirectIfVerified]
+  middleware: [redirectIfVerified],
+  head: {
+    title: 'メールアドレスの確認'
+  }
 })
 export default class Verified extends Vue {
   step = 3

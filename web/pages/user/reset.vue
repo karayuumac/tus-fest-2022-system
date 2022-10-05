@@ -45,7 +45,10 @@ import { ToasterStore } from '@/utils/store-accsessor'
 import { email_rules } from '@/utils/rules'
 import { VFormInterface } from '~/interface/VFormInterface'
 @Component({
-  components: { SingleSubmitButton, RegisterStepper, CardHeader }
+  components: { SingleSubmitButton, RegisterStepper, CardHeader },
+  head: {
+    title: 'パスワードのリセット'
+  }
 })
 export default class Reset extends Vue {
   email = ''

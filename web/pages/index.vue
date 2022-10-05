@@ -88,7 +88,10 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CardHeader from '~/components/ui/CardHeader.vue'
 
 @Component({
-  components: { CardHeader }
+  components: { CardHeader },
+  head: {
+    title: 'トップページ'
+  }
 })
 export default class Index extends Vue {
   panel = [0, 1]

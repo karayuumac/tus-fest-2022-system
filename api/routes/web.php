@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/auth/reset-password/{token}', ResetPasswordController::class)
   ->name('password.reset');
 
-// Route::post('stripe/webhook', [StripeWebhookController::class, 'handlePaymentIntentSucceeded']);
+Route::post('stripe/webhook', [StripeWebhookController::class, 'handlePaymentIntentSucceeded']);

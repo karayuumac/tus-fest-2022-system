@@ -21,6 +21,9 @@ return new class extends Migration {
       // チケット表示用トークン
       $table->uuid('ticket_token');
 
+      // 譲渡しているかどうか
+      $table->boolean('is_assigned')->default(false);
+
       // 使用したかどうか
       $table->boolean('has_used')->default(false);
 

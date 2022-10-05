@@ -115,7 +115,10 @@ import redirectIfAuthenticated from '~/middleware/redirectIfAuthenticated'
 
 @Component({
   components: { RegisterStepper, CardHeader },
-  middleware: [redirectIfAuthenticated]
+  middleware: [redirectIfAuthenticated],
+  head: {
+    title: '条件の確認'
+  }
 })
 export default class Condition extends Vue {
   step = 1

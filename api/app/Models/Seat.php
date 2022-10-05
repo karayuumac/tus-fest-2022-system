@@ -12,11 +12,17 @@ class Seat extends Model
     'is_pending',
     'charge_id',
     'ticket_token',
-    'has_used'
+    'has_used',
+    'is_assigned'
   ];
 
   public function charge()
   {
     return $this->belongsTo(Charge::class, 'charge_id');
+  }
+
+  public function event()
+  {
+    return $this->charge->event();
   }
 }

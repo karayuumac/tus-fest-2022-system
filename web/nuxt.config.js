@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - 2022年度野田地区理大祭来場予約',
+    titleTemplate: '%s - 2022年度野田地区理大祭来場予約システム',
     htmlAttrs: {
       lang: 'ja'
     },

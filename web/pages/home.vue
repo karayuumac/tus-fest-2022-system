@@ -42,14 +42,14 @@
               </tr>
               <tr>
                 <td class="text-center">
-                  公式ホームページ
+                  公式ホームページ（先行公開）
                 </td>
                 <td class="text-center">
                   <a
-                    href="https://www.tus.ac.jp/access/noda_campus/"
+                    href="https://nodaridaisai.com/2022/pre"
                     target="_blank"
                   >
-                    https://www.tus.ac.jp/access/noda_campus/
+                    https://nodaridaisai.com/2022/pre
                   </a>
                 </td>
               </tr>
@@ -87,9 +87,46 @@
             </tbody>
           </template>
         </v-simple-table>
-        <v-btn id="logout" @click="logout">
+
+        <h3 class="text-center mt-3">
+          予約状況の確認
+        </h3>
+        <v-divider class="mt-2" />
+        <div class="mt-2 pa-2 black--text">
+          予約状況の確認では、以下のことが行えます。
+          <ul>
+            <li>予約・購入したチケットの確認</li>
+            <li>予約・購入したチケットの譲渡</li>
+          </ul>
+        </div>
+        <v-row class="mt-4 mb-2">
+          <v-btn
+            outlined
+            color="blue"
+            class="mx-auto"
+            @click="$router.push('/reserve')"
+          >
+            予約の確認はこちら
+          </v-btn>
+        </v-row>
+
+        <h3 class="text-center mt-5">
           ログアウト
-        </v-btn>
+        </h3>
+        <v-divider class="mt-2" />
+        <div class="mt-2 pa-2 black--text">
+          以下のボタンからログアウトすることが可能です。再度ログインする場合は、メールアドレスとパスワードが必要です。
+        </div>
+        <v-row class="mt-4 mb-2">
+          <v-btn
+            outlined
+            color="red"
+            class="mx-auto"
+            @click="logout"
+          >
+            ログアウト
+          </v-btn>
+        </v-row>
       </v-card-text>
     </v-card>
   </v-container>
@@ -103,7 +140,7 @@ import CardHeader from '~/components/ui/CardHeader.vue'
 import EventTableRow from '~/components/ui/event/EventTableRow.vue'
 import { Event } from '~/data/Event'
 
-interface EventInterface {
+export interface EventInterface {
   id: number,
   name: string,
   application_start_date: string,
