@@ -89,8 +89,8 @@ class SeatController extends Controller
           $col = $seat['col'];
 
           if (Seat::where([
-              ['row', '=', $row],
-              ['col', '=', $col]
+              ['row', $row],
+              ['col', $col]
             ])->count() !== 0) {
             throw new Exception();
           }
@@ -124,9 +124,6 @@ class SeatController extends Controller
       });
     } catch (Exception $e) {
       Log::warning($e->getMessage());
-
-      // セッションを無効化
-      $stripe->checkout->sessions->expire($checkoutSession->id);
 
       return response()->json([
         'message' => '指定された座席はすでに予約されています.'

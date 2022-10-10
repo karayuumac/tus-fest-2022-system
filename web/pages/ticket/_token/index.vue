@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" min-width="500px" class="mx-auto">
-      <CardHeader />
+      <CardHeader class="no-print" />
       <v-card-text class="font-size-normal">
         <h3 class="text-center">
           チケット
@@ -9,13 +9,13 @@
         <v-divider class="mt-2" />
 
         <v-row class="mt-4 mb-2">
-          <span class="blue--text ml-4">
+          <span class="blue--text ml-4 no-print">
             本画面を印刷するか、入場の際に画面をお見せください。
           </span>
           <v-btn
             outlined
             color="blue"
-            class="ml-auto mr-4"
+            class="ml-auto mr-4 no-print"
             @click="print"
           >
             印刷
@@ -44,6 +44,17 @@
               <div class="black--text text-center mt-2">
                 {{ data.token }}
               </div>
+            </div>
+
+            <v-divider class="mt-4" />
+
+            <div class="mt-4 pa-2 black--text">
+              <ul>
+                <li>当日受付にて本QRコードをご提示ください。</li>
+                <li class="mt-3">
+                  同じチケットで２度以上入場することはできません。
+                </li>
+              </ul>
             </div>
           </v-card-text>
         </v-card>
@@ -126,13 +137,13 @@ img {
 }
 
 @page {
-  size: A4;
+  size: A4 portrait;
 }
 
 html {
   @media print {
     -webkit-print-color-adjust: exact;
-    :not(#ticket) {
+    .no-print {
       display: none;
     }
   }
