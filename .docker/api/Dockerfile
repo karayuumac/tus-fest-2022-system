@@ -1,4 +1,4 @@
-FROM php:8-fpm
+FROM php:8.0-fpm
 
 COPY install-composer.sh /
 RUN apt-get update \
