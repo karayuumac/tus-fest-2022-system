@@ -45,9 +45,9 @@ export default class Verified extends Vue {
   step = 3
 
   async resendVerificationMail () {
-    await this.$axios.get('sanctum/csrf-cookie')
+    await this.$axios.get('/sanctum/csrf-cookie')
     await this.$axios.post(
-      'auth/email/verification-notification'
+      '/auth/email/verification-notification'
     )
       .then(() => {
         ToasterStore.setToast({

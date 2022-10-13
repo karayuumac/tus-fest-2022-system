@@ -19,6 +19,17 @@
     </v-main>
     <v-footer app>
       <h5>&copy; 東京理科大学野田地区理大祭実行委員会 {{ new Date().getFullYear() }}</h5>
+      <div class="ml-auto">
+        <a
+          href="/terms"
+          class="mr-3"
+        >
+          利用規約
+        </a>
+        <a href="/transaction">
+          特定商取引法に基づく表示
+        </a>
+      </div>
     </v-footer>
   </v-app>
 </template>

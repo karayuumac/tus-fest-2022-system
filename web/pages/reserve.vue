@@ -86,6 +86,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CardHeader from '~/components/ui/CardHeader.vue'
 import { Event } from '~/data/Event'
 import EventOpeningDate from '~/components/ui/event/EventOpeningDate.vue'
+import redirectIfNotVerified from "~/middleware/redirectIfNotVerified";
 
 interface Response {
   id: string,
@@ -103,7 +104,8 @@ type Responses = {
   components: { EventOpeningDate, CardHeader },
   head: {
     title: '予約・購入チケット一覧'
-  }
+  },
+  middleware: [redirectIfNotVerified]
 })
 export default class Reserve extends Vue {
   tickets: Responses = {}

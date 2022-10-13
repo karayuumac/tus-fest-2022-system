@@ -111,8 +111,8 @@ class SeatController extends Controller
             'quantity' => count($seats)
           ]],
           'mode' => 'payment',
-          'success_url' => 'http://localhost/event/success',
-          'cancel_url' => 'http://localhost/event/' . $id,
+          'success_url' => config('app.frontend_url') . '/event/success',
+          'cancel_url' => config('app.frontend_url') . '/event/' . $id,
           'payment_intent_data' => [
             'metadata' => [
               'charge_model_id' => $charge->id,

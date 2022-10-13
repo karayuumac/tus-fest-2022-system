@@ -61,7 +61,7 @@ return [
   |
   */
 
-  'home' => RouteServiceProvider::HOME,
+  'home' => env('HOME_URL'),
 
   /*
   |--------------------------------------------------------------------------
@@ -139,4 +139,7 @@ return [
     Features::updatePasswords(),
   ],
 
+  'redirects' => [
+    'login' => env('FRONTEND_URL') . '/user/login'
+  ]
 ];

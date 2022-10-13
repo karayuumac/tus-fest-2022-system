@@ -217,11 +217,15 @@ export default class UserCreate extends Vue {
   last_name_yomi_rules = last_name_yomi_rules
   phone_number_rules = phone_number_rules
 
+  mounted () {
+    this.$axios.$get('/sanctum/csrf-cookie')
+  }
+
   async submit () {
     if ((this.$refs.form as VFormInterface).validate()) {
-      await this.$axios.get('sanctum/csrf-cookie')
+      await this.$axios.$get('/sanctum/csrf-cookie')
       await this.$axios
-        .post('auth/register', {
+        .$post('/auth/register', {
           family_name: this.family_name,
           given_name: this.given_name,
           family_name_yomi: this.family_name_yomi,

@@ -16,7 +16,7 @@ return new class extends Migration {
 
       // 予約者
       $table->unsignedBigInteger('reserve_user_id');
-      $table->foreign('reserve_user_id')->references('id')->on('events');
+      $table->foreign('reserve_user_id')->references('id')->on('users');
 
       // チケット表示用トークン
       $table->uuid('ticket_token');

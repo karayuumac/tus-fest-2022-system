@@ -101,9 +101,9 @@ export default class ResetPassword extends Vue {
         color: 'error'
       })
     } else {
-      await this.$axios.get('sanctum/csrf-cookie')
+      await this.$axios.get('/sanctum/csrf-cookie')
       await this.$axios.post(
-        'auth/reset-password',
+        '/auth/reset-password',
         {
           email: this.$route.query.email,
           token: this.$route.query.token,

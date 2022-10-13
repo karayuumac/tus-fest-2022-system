@@ -1,6 +1,15 @@
 import colors from 'vuetify/es5/util/colors'
+const environment = process.env.NODE_ENV
+const envSettings = require(`./env.${environment}.js`)
 
 export default {
+  target: 'static',
+  generate: {
+    fallback: true
+  },
+
+  env: envSettings,
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -55,43 +64,9 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://localhost',
-    withCredentials: true
+    baseURL: envSettings.BASE_URL,
+    credentials: true
   },
-
-  /* auth: {
-    redirect: {
-      login: '/login',
-      logout: '/',
-      callback: false,
-      home: '/'
-    },
-    strategies: {
-      local: {
-        endpoints: {
-          login: {
-            url: '/auth/login',
-            method: 'post',
-            propertyName: false
-          },
-          register: {
-            url: '/auth/register',
-            method: 'post'
-          },
-          logout: {
-            url: '/auth/logout',
-            method: 'post'
-          },
-          user: {
-            url: '/api/user',
-            method: 'get'
-          }
-        },
-        tokenRequired: false,
-        tokenType: false
-      }
-    }
-  }, */
 
   auth: {
     redirect: {
@@ -103,7 +78,7 @@ export default {
     strategies: {
       laravelSanctum: {
         provider: 'laravel/sanctum',
-        url: 'http://localhost',
+        url: envSettings.BASE_URL,
         endpoints: {
           login: {
             url: '/auth/login',

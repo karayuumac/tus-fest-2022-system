@@ -32,7 +32,7 @@
             class="mx-auto"
             outlined
             color="blue"
-            @click="$router.push('/reserves')"
+            @click="$router.push('/reserve')"
           >
             予約・購入済みチケット一覧へ
           </v-btn>
