@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" class="mx-auto">
-      <CardHeader />
+      <CardHeader :show-back-button="false" />
       <v-card-text class="font-size-normal">
         <h3 class="text-center">
           2022年度野田地区理大祭来場者予約システム利用規約
@@ -42,6 +42,9 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CardHeader from '~/components/ui/CardHeader.vue'
 
 @Component({
+  head: {
+    title: 'プライバシーポリシー'
+  },
   components: {
     CardHeader
   }

@@ -12,6 +12,7 @@ export class Event {
   private readonly endDate: Dayjs
   private readonly price: number
   private readonly status: Status
+  private readonly canReserve: boolean
   private readonly maxReservationCount: number
 
   constructor (
@@ -23,6 +24,7 @@ export class Event {
     endDate: string,
     price: number,
     status: string,
+    canReserve: boolean,
     maxReservationCount: number
   ) {
     locale('ja')
@@ -35,6 +37,7 @@ export class Event {
     this.endDate = dayjs(endDate)
     this.price = price
     this.status = toStatus(status)
+    this.canReserve = canReserve
     this.maxReservationCount = maxReservationCount
   }
 
@@ -127,5 +130,9 @@ export class Event {
 
   get getMaxReservationCount () {
     return this.maxReservationCount
+  }
+
+  get getCanReserve () {
+    return this.canReserve
   }
 }

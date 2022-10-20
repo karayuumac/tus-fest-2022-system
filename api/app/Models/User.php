@@ -32,7 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail
     'given_name_yomi',
     'email',
     'password',
-    'phone_number'
+    'phone_number',
+    'sms_verified_at'
   ];
 
   /**
@@ -54,6 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
    */
   protected $casts = [
     'email_verified_at' => 'datetime',
+    'sms_verified_at' => 'datetime'
   ];
 
   /**
@@ -68,11 +70,6 @@ class User extends Authenticatable implements MustVerifyEmail
   public function reserves()
   {
     return $this->hasMany(Reserve::class, 'reserve_user_id');
-  }
-
-  public function alreadyReserved()
-  {
-    return $this->reserves->count() > 0;
   }
 
   public function charges()

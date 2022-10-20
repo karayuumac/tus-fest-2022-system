@@ -26,6 +26,11 @@ class EventController extends Controller
   {
     $event = Event::find($id);
 
+    if (!$event->canReserve()) {
+      return response()->json([
+        'message' => '権限がありません.'
+      ], 400);
+    }
     if (!$event->isFree()) {
       return response()->json(
         [

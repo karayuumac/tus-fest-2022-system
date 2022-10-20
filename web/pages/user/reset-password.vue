@@ -45,6 +45,7 @@
 
         <v-row class="mt-4 mb-2">
           <SingleSubmitButton
+            outlined
             class="mx-auto"
             :on-click="resetPassword"
           >

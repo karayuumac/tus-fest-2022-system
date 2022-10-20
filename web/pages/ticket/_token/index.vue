@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-card max-width="750px" min-width="500px" class="mx-auto">
+    <v-card min-width="450px" max-width="750px" class="mx-auto">
       <CardHeader class="no-print" />
       <v-card-text class="font-size-normal">
         <h3 class="text-center">
@@ -21,26 +21,36 @@
             印刷
           </v-btn>
         </v-row>
-        <v-card id="ticket" class="mt-4">
+        <v-card id="ticket" min-width="400px" class="mt-4">
           <div class="ticket-header-background">
-            <v-img class="ticket-header-img" :src="require('~/static/logo_white.svg')" />
-            <v-card-title class="white--text d-flex flex-column align-end">
-              <span>2022年度野田地区理大祭</span>
-              <h3>デジタルチケット</h3>
-              <h4 v-if="data.event.isHeldSameDate" class="mt-3">
-                {{ data.event.getName }} ({{ data.event.stringBeginDay }} {{
-                  data.event.stringBeginTime
-                }}〜{{ data.event.stringEndTime }})
-              </h4>
-              <h4 v-else class="mt-3">
-                {{ data.event.getName }} ({{ data.event.stringBeginDay }} {{ data.event.stringBeginTime }} 〜
-                {{ data.event.stringEndDay }} {{ data.event.stringEndTime }})
-              </h4>
-            </v-card-title>
+            <v-container class="ma-0">
+              <v-row>
+                <v-col class="pa-0" cols="4">
+                  <v-img class="ticket-header-img" :src="require('~/static/logo_white.svg')" />
+                </v-col>
+                <v-col class="pa-0" cols="8">
+                  <v-card-title class="white--text d-flex flex-column align-end">
+                    <span>2022年度野田地区理大祭</span>
+                    <h3>デジタルチケット</h3>
+                    <h5 v-if="data.event.isHeldSameDate" class="mt-2">
+                      {{ data.event.getName }} ({{ data.event.stringBeginDay }} {{
+                        data.event.stringBeginTime
+                      }}〜{{ data.event.stringEndTime }})
+                    </h5>
+                    <h5 v-else class="mt-2">
+                      {{ data.event.getName }} ({{ data.event.stringBeginDay }} {{ data.event.stringBeginTime }} 〜
+                      {{ data.event.stringEndDay }} {{ data.event.stringEndTime }})
+                    </h5>
+                  </v-card-title>
+                </v-col>
+              </v-row>
+            </v-container>
           </div>
           <v-card-text>
-            <div class="mt-4">
-              <QRCode class="qrcode" error-level="H" :text="data.token" />
+            <div class="mt-4 mx-auto">
+              <div>
+                <vue-qrcode v-if="data.token" class="d-block mx-auto" :value="data.token" :options="option" />
+              </div>
               <div class="black--text text-center mt-2">
                 {{ data.token }}
               </div>
@@ -65,13 +75,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import QRCode from 'vue-qrcode-component/src/QRCode.vue'
+import VueQrcode from '@chenfengyuan/vue-qrcode'
 import { Event } from '~/data/Event'
 import CardHeader from '~/components/ui/CardHeader.vue'
 import redirectIfNotValidToken from '~/middleware/ticket/redirectIfNotValidToken'
 
 @Component({
-  components: { CardHeader, QRCode },
+  components: { CardHeader, VueQrcode },
   middleware: [redirectIfNotValidToken],
   head: {
     title: '電子チケット'
@@ -81,6 +91,11 @@ export default class Index extends Vue {
   data = {
     event: {},
     token: ''
+  }
+
+  option = {
+    errorCorrectionLevel: 'H',
+    scale: 6
   }
 
   get token () {
@@ -102,6 +117,7 @@ export default class Index extends Vue {
             rawEvent.end_date,
             Number.parseInt(rawEvent.price),
             rawEvent.status,
+            rawEvent.can_reserve,
             rawEvent.max_reservation_count
           ),
           token: res.token
@@ -127,13 +143,10 @@ export default class Index extends Vue {
 }
 
 .ticket-header-img {
+  width: 150px;
+  height: auto;
   position: absolute;
-  left: 20px;
-}
-
-img {
-  margin-right: auto !important;
-  margin-left: auto !important;
+  left: 10px;
 }
 
 @page {

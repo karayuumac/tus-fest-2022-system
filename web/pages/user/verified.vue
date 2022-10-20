@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" class="mx-auto">
-      <CardHeader />
+      <CardHeader :show-back-button="false" />
       <v-card-text class="font-size-normal">
         <RegisterStepper v-model="step" />
         <h3 class="mt-5 text-center">
@@ -15,6 +15,7 @@
         </p>
         <v-row class="mt-4 mb-2">
           <SingleSubmitButton
+            outlined
             class="mx-auto"
             :on-click="resendVerificationMail"
           >

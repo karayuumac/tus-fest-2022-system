@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" class="mx-auto">
-      <CardHeader />
+      <CardHeader :show-back-button="false" />
       <v-card-text class="font-size-normal">
         <h3 class="text-center">
           特定商取引法に基づく表示
@@ -105,7 +105,8 @@
                   契約の申し込みの撤回（キャンセル）
                 </td>
                 <td>
-                  予約・販売が成立した後の申し込みの撤回（キャンセル）はできません。
+                  予約・販売が成立した後の申し込みの撤回（キャンセル）はできません。<br>
+                  ただし、実行委員会側の責めに帰すべき場合にはキャンセル・返金をいたします。
                 </td>
               </tr>
             </tbody>

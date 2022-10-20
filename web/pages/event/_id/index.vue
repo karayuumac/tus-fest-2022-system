@@ -120,6 +120,7 @@
                   </span>
                 </v-card-title>
                 <v-card-text>
+                  {{ event.getName }}のチケットを{{ selection }}名分予約します<br>
                   予約しますか？
                 </v-card-text>
                 <v-card-actions>
@@ -212,6 +213,12 @@
                   また、お支払い方法は<span class="blue--text font-weight-bold">クレジットカードのみ</span>とさせていただきます。あらかじめご了承ください。
                 </li>
                 <li class="mt-3">
+                  新型コロナウイルスの感染拡大等により、大学側より収容人数の制限を設けられた場合、一部の座席を制限させていただく場合がございます。あらかじめご了承ください。
+                  <ul class="mt-3">
+                    <li>その場合、該当する座席を予約された方にはメールにてご連絡の上、キャンセル・返金をさせていただきます。</li>
+                  </ul>
+                </li>
+                <li class="mt-3">
                   <a href="/transaction" target="_blank">特定商取引法に基づく表記</a>も合わせてご覧ください。
                 </li>
               </ul>
@@ -267,6 +274,7 @@ export default class EventIndex extends Vue {
           rawEvent.end_date,
           Number.parseInt(rawEvent.price),
           rawEvent.status,
+          rawEvent.can_reserve,
           rawEvent.max_reservation_count
         )
       })

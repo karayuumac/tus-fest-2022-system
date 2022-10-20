@@ -23,6 +23,7 @@ class EventSeeder extends Seeder
       'price' => 0,
       'status' => Status::LOTTERY_APPLICATIONS,
       'visible' => 1,
+      'capacity' => 3500,
       'max_reservation_count' => 2,
     ]);
 
@@ -37,6 +38,7 @@ class EventSeeder extends Seeder
       'price' => 0,
       'status' => Status::LOTTERY_APPLICATIONS,
       'visible' => 1,
+      'capacity' => 3500,
       'max_reservation_count' => 2,
     ]);
 
@@ -50,6 +52,7 @@ class EventSeeder extends Seeder
       'end_date' => Carbon::create(2022, 11, 27, 17, 00, 00),
       'price' => 1500,
       'status' => Status::LOTTERY_APPLICATIONS,
+      'capacity' => 500,
       'visible' => 1
     ]);
 
@@ -65,6 +68,7 @@ class EventSeeder extends Seeder
       'end_date' => Carbon::create(2022, 11, 27, 17, 00, 00),
       'price' => 0,
       'status' => Status::LOTTERY_APPLICATIONS,
+      'capacity' => 3500,
       'visible' => 1
     ]);
 
@@ -80,6 +84,7 @@ class EventSeeder extends Seeder
       'end_date' => Carbon::create(2022, 11, 27, 17, 00, 00),
       'price' => 1500,
       'status' => Status::LOTTERY_APPLICATIONS,
+      'capacity' => 3500,
       'visible' => 1
     ]);
 
@@ -95,6 +100,7 @@ class EventSeeder extends Seeder
       'end_date' => Carbon::create(2022, 11, 27, 17, 00, 00),
       'price' => 1500,
       'status' => Status::PENDING,
+      'capacity' => 3500,
       'visible' => 1
     ]);
 
@@ -110,6 +116,7 @@ class EventSeeder extends Seeder
       'end_date' => Carbon::create(2022, 11, 27, 17, 00, 00),
       'price' => 1500,
       'status' => Status::DONE,
+      'capacity' => 3500,
       'visible' => 1
     ]);
   }

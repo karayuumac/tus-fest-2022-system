@@ -139,6 +139,7 @@
 
           <v-row class="mt-4 mb-2">
             <SingleSubmitButton
+              outlined
               class="mx-auto"
               :disabled="!confirm_terms"
               :on-click="submit"

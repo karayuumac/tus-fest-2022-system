@@ -107,7 +107,7 @@ class SeatController extends Controller
         $checkoutSession = Session::create([
           'customer_email' => Auth::user()->email,
           'line_items' => [[
-            'price' => 'price_1Lk1a2KSt4j2Xc6z372LOdGV', // TODO: change here!
+            'price' => 'price_1LrdwFHJML5r85UXEQlGY6SJ', // TODO: change here!
             'quantity' => count($seats)
           ]],
           'mode' => 'payment',

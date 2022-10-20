@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" class="mx-auto">
-      <CardHeader />
+      <CardHeader :show-back-button="false" />
       <v-card-text class="font-size-normal">
         <h3 class="text-center">
           理大祭情報
@@ -150,6 +150,7 @@ export interface EventInterface {
   price: string,
   status: string,
   visible: string,
+  can_reserve: boolean,
   max_reservation_count: number
 }
 
@@ -178,11 +179,13 @@ export default class Home extends Vue {
               event.end_date,
               Number.parseInt(event.price),
               event.status,
+              event.can_reserve,
               event.max_reservation_count
             )
           )
         }
       })
+    console.info(this.events)
   }
 
   logout (): void {

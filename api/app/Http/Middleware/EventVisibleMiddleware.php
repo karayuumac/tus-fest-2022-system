@@ -11,7 +11,7 @@ class EventVisibleMiddleware
   public function handle(Request $request, Closure $next)
   {
     $event = Event::findOrFail($request->route()->parameter('id'));
-    if ($event->visible) {
+    if ($event->canReserve()) {
       return $next($request);
     }
     return response()->json([], 403);

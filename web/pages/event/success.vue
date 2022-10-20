@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" class="mx-auto">
-      <CardHeader />
+      <CardHeader :show-back-button="false" />
       <v-card-text class="font-size-normal">
         <h3 class="text-center">
           予約・購入完了

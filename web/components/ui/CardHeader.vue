@@ -1,18 +1,44 @@
 <template>
-  <div class="card-header-background">
-    <v-img class="card-header-img" src="https://nodaridaisai.com/2021/_nuxt/img/ship.8829128.svg" />
-    <v-card-title class="white--text d-flex flex-column align-end">
-      <span>2022年度野田地区理大祭</span>
-      <h3>来場者予約システム</h3>
-    </v-card-title>
+  <div>
+    <div class="card-header-background">
+      <v-card-title class="white--text d-flex flex-column align-end">
+        <span>2022年度野田地区理大祭</span>
+        <h3>来場者予約システム</h3>
+      </v-card-title>
+    </div>
+    <v-container v-show="showBackButton">
+      <v-row class="pa-2">
+        <v-btn
+          color="blue"
+          outlined
+          @click="clickBack"
+        >
+          <v-icon>{{ mdiChevronLeft }}</v-icon>
+          戻る
+        </v-btn>
+      </v-row>
+      <v-divider class="mt-2" />
+    </v-container>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { mdiChevronLeft } from '@mdi/js'
 
 @Component
-export default class CardHeader extends Vue {}
+export default class CardHeader extends Vue {
+  mdiChevronLeft = mdiChevronLeft
+
+  @Prop({
+    type: Boolean, default: true
+  })
+    showBackButton!: boolean
+
+  clickBack () {
+    window.history.back()
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -23,7 +49,7 @@ export default class CardHeader extends Vue {}
 
 .card-header-img {
   position: absolute;
-  left: 30px;
+  left: 25px;
   top: 20px;
   animation: move-y 4s infinite alternate ease-in-out;
   @keyframes move-y {

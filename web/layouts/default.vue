@@ -23,10 +23,11 @@
         <a
           href="/terms"
           class="mr-3"
+          target="_blank"
         >
           利用規約
         </a>
-        <a href="/transaction">
+        <a href="/transaction" target="_blank">
           特定商取引法に基づく表示
         </a>
       </div>

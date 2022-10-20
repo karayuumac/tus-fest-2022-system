@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" class="mx-auto">
-      <CardHeader />
+      <CardHeader :show-back-button="false" />
       <v-card-text class="font-size-normal">
         <h3 class="text-center">
           2022年度野田地区理大祭来場者予約システム利用規約
@@ -301,7 +301,7 @@
           </li>
           <li class="mt-2">
             実行委員会は、ユーザーが実行委員会に提供した情報、データ等を、個人の特定できない形での統計的な情報として、
-            実行委員会の裁量で、利用及び後悔することができるものとし、ユーザーはこれに意義を唱えないものとします。
+            実行委員会の裁量で、利用及び公開することができるものとし、ユーザーはこれに意義を唱えないものとします。
           </li>
         </ol>
 
@@ -366,6 +366,9 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CardHeader from '~/components/ui/CardHeader'
 
 @Component({
+  head: {
+    title: '利用規約'
+  },
   components: {
     CardHeader
   }

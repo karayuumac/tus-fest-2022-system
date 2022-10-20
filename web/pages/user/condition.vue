@@ -16,9 +16,9 @@
               <v-expansion-panel-content>
                 本予約の対象者は、以下の条件を全て満たす方です。
                 <ol class="mt-4">
-                  <li>学外の方である（<span class="blue--text font-weight-bold">本学の学生ではない</span>）こと</li>
+                  <li>学外の方である（<span class="blue--text font-weight-bold">本学の学生・教職員ではない</span>）こと</li>
                   <li class="mt-2">
-                    2022年度東京理科大学野田地区理大祭（11月〇〇日開催）に参加する予定であること
+                    2022年度東京理科大学野田地区理大祭（11月26日・27日開催）に参加する予定であること
                   </li>
                 </ol>
               </v-expansion-panel-content>
@@ -53,10 +53,6 @@
                   <li class="mt-2">
                     理大祭参加日１週間前以降に体調不良や濃厚接触・感染の疑いがある場合は、理大祭に参加しないでください。<br>
                     また、同居家族や身近な知人に感染の疑いがないことを確認してください。
-                  </li>
-                  <li class="mt-2">
-                    新型コロナウイルス接触確認アプリ（COCOA）の使用をお願いいたします。<br>
-                    （ただし、使用している携帯電話がCOCOAに対応していない場合、あるいは携帯電話をお持ちでない場合は必要ありません。）
                   </li>
                   <li class="mt-2">
                     理大祭参加にあたっては、必ずマスクを着用してください。（不織布を推奨します。）<br>
@@ -94,7 +90,7 @@
               @click="goToRegisterUser"
             >
               <span v-if="!confirm_condition || !confirm_covid_term">
-                チェックボックスにチェックを入れてください
+                チェックを入れてください
               </span>
               <span v-else>
                 ユーザー登録に進む

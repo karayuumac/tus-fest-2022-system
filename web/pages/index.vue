@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <v-card max-width="750px" min-width="400px" class="mx-auto">
-      <CardHeader title="ポータルサイト" />
+    <v-card max-width="750px" class="mx-auto">
+      <CardHeader :show-back-button="false" title="ポータルサイト" />
 
       <v-card-text class="font-size-normal">
         <p>
@@ -10,18 +10,15 @@
         </p>
         <v-expansion-panels v-model="panel" accordion class="mt-4" multiple>
           <v-expansion-panel>
-            <v-expansion-panel-header>学外からお越しの方（在校生のご家族を含む）</v-expansion-panel-header>
+            <v-expansion-panel-header>学外からお越しの方（本学学生のご家族を含む）</v-expansion-panel-header>
             <v-expansion-panel-content>
               <ul>
                 <li>来場者の人数把握のために、学外からお越しの方は事前に本システムによる来場予約をお願いしております。</li>
-                <li class="mt-3">
-                  来場者の人数により、<span class="blue--text font-weight-bold">入場制限等を設ける場合がございます</span>。あらかじめご了承ください。
-                </li>
               </ul>
               <v-row v-if="!isLoggedIn" class="mt-4 mb-2">
                 <v-col
                   cols="12"
-                  sm="6"
+                  lg="6"
                   class="d-flex justify-center"
                 >
                   <v-btn
@@ -35,7 +32,7 @@
 
                 <v-col
                   cols="12"
-                  sm="6"
+                  lg="6"
                   class="d-flex justify-center"
                 >
                   <v-btn
@@ -43,7 +40,7 @@
                     color="blue"
                     @click="$router.push('/user/login')"
                   >
-                    すでにユーザー登録済みの方はこちら
+                    ログインはこちら
                   </v-btn>
                 </v-col>
               </v-row>
@@ -67,12 +64,12 @@
           </v-expansion-panel>
 
           <v-expansion-panel>
-            <v-expansion-panel-header>在校生・大学関係者・理大祭関係者の方々</v-expansion-panel-header>
+            <v-expansion-panel-header>本学学生・教職員・理大祭関係者の方々</v-expansion-panel-header>
             <v-expansion-panel-content>
               <ul>
-                <li>在校生・大学関係者・理大祭関係者の方々の入場予約は<span class="blue--text font-weight-bold">不要</span>です。</li>
+                <li>本学学生・教職員・理大祭関係者の方々の入場予約は<span class="blue--text font-weight-bold">不要</span>です。</li>
                 <li class="mt-3">
-                  入場の際に学生証等（在校生・大学関係者・理大祭関係者であることを証明できるもの）の提示をお願いいたします。
+                  ただし、場合により実行委員から学生証・職員証の提示を求める場合があります。
                 </li>
               </ul>
             </v-expansion-panel-content>

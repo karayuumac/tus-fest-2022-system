@@ -76,6 +76,17 @@
         <div v-else class="text-center mt-4">
           予約・購入済みのチケットはありません
         </div>
+
+        <v-row class="mt-3 mb-2">
+          <v-btn
+            class="mx-auto"
+            outlined
+            color="blue"
+            @click="$router.push('/home')"
+          >
+            ホームに戻る
+          </v-btn>
+        </v-row>
       </v-card-text>
     </v-card>
   </v-container>
@@ -86,7 +97,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import CardHeader from '~/components/ui/CardHeader.vue'
 import { Event } from '~/data/Event'
 import EventOpeningDate from '~/components/ui/event/EventOpeningDate.vue'
-import redirectIfNotVerified from "~/middleware/redirectIfNotVerified";
+import redirectIfNotVerified from '~/middleware/redirectIfNotVerified'
 
 interface Response {
   id: string,
@@ -127,6 +138,7 @@ export default class Reserve extends Vue {
               data.event.end_date,
               Number.parseInt(data.event.price),
               data.event.status,
+              data.event.can_reserve,
               data.event.max_reservation_count
             ),
             ticket_token: data.ticket_token,
