@@ -139,7 +139,8 @@ export default class Reserve extends Vue {
               Number.parseInt(data.event.price),
               data.event.status,
               data.event.can_reserve,
-              data.event.max_reservation_count
+              data.event.max_reservation_count,
+              data.event.is_full
             ),
             ticket_token: data.ticket_token,
             is_assigned: data.is_assigned

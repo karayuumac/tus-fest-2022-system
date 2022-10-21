@@ -25,11 +25,12 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/{id}', [EventController::class, 'get'])->name('event.get')
       ->middleware('event.visible');
     Route::post('/{id}/reserve', [EventController::class, 'reserve'])->name('event.reserve')
-      ->middleware('event.visible');
+      ->middleware(['event.visible', 'event.not_reserved']);
 
     Route::get('/{id}/seat/reserved/all', [SeatController::class, 'reservedSeats'])->name('seat.reserved');
     Route::get('/{id}/seat/reserved', [SeatController::class, 'reservedSeatsByUser'])->name('seat.reserved.user');
-    Route::post('/{id}/seat/reserve', [SeatController::class, 'reserveWithPending'])->name('seats.reserve');
+    Route::post('/{id}/seat/reserve', [SeatController::class, 'reserveWithPending'])->name('seats.reserve')
+      ->middleware(['event.visible', 'event.not_reserved']);
     Route::post('/{id}/seat/release', [SeatController::class, 'releasePendingSeats'])->name('seat.release');
   });
 

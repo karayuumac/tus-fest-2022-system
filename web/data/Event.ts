@@ -14,6 +14,7 @@ export class Event {
   private readonly status: Status
   private readonly canReserve: boolean
   private readonly maxReservationCount: number
+  private readonly isFull: boolean
 
   constructor (
     id: number,
@@ -25,7 +26,8 @@ export class Event {
     price: number,
     status: string,
     canReserve: boolean,
-    maxReservationCount: number
+    maxReservationCount: number,
+    isFull: boolean
   ) {
     locale('ja')
 
@@ -39,6 +41,7 @@ export class Event {
     this.status = toStatus(status)
     this.canReserve = canReserve
     this.maxReservationCount = maxReservationCount
+    this.isFull = isFull
   }
 
   get getId () {
@@ -134,5 +137,9 @@ export class Event {
 
   get getCanReserve () {
     return this.canReserve
+  }
+
+  get getIsFull () {
+    return this.isFull
   }
 }

@@ -64,4 +64,15 @@ class Event extends Model
         'event_id' => $this->id
       ])->get()) == 0;
   }
+
+  public function isFull()
+  {
+    if ($this->isFree()) {
+      return $this->reserves()->count() >= $this->capacity;
+    } else {
+      return Seat::with('charge')->whereHas('charge', function ($query) {
+          return $query->where('event_id', $this->id);
+      })->count() >= $this->capacity;
+    }
+  }
 }

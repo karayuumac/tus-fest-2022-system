@@ -151,7 +151,8 @@ export interface EventInterface {
   status: string,
   visible: string,
   can_reserve: boolean,
-  max_reservation_count: number
+  max_reservation_count: number,
+  is_full: boolean
 }
 
 @Component({
@@ -180,12 +181,12 @@ export default class Home extends Vue {
               Number.parseInt(event.price),
               event.status,
               event.can_reserve,
-              event.max_reservation_count
+              event.max_reservation_count,
+              event.is_full
             )
           )
         }
       })
-    console.info(this.events)
   }
 
   logout (): void {

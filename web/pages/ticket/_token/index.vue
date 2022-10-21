@@ -118,7 +118,8 @@ export default class Index extends Vue {
             Number.parseInt(rawEvent.price),
             rawEvent.status,
             rawEvent.can_reserve,
-            rawEvent.max_reservation_count
+            rawEvent.max_reservation_count,
+            rawEvent.is_full
           ),
           token: res.token
         }

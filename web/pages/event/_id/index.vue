@@ -161,6 +161,13 @@
                   <span class="blue--text font-weight-bold">
                     一度予約・購入されたチケットのキャンセルは原則として承ることができません。
                   </span>
+                </li>
+                <li class="mt-3">
+                  <span class="blue--text font-weight-bold">
+                    予約は１アカウントにつき１回のみ可能です。
+                  </span>
+                </li>
+                <li class="mt-3">
                   予約・購入内容をよくご確認の上、予約・購入をお願いいたします。
                 </li>
                 <li class="mt-3">
@@ -275,7 +282,8 @@ export default class EventIndex extends Vue {
           Number.parseInt(rawEvent.price),
           rawEvent.status,
           rawEvent.can_reserve,
-          rawEvent.max_reservation_count
+          rawEvent.max_reservation_count,
+          rawEvent.is_full
         )
       })
   }

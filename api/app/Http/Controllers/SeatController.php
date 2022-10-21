@@ -91,7 +91,7 @@ class SeatController extends Controller
           if (Seat::where([
               ['row', $row],
               ['col', $col]
-            ])->count() !== 0) {
+            ])->lockForUpdate()->count() !== 0) {
             throw new Exception();
           }
 
