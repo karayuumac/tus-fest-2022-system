@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\EnsureAdminMiddleware;
 use App\Http\Middleware\EnsureNotReservedMiddleware;
 use App\Http\Middleware\EventVisibleMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -69,6 +70,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         'event.visible' => EventVisibleMiddleware::class,
-        'event.not_reserved' => EnsureNotReservedMiddleware::class
+        'event.not_reserved' => EnsureNotReservedMiddleware::class,
+        'admin' => EnsureAdminMiddleware::class
     ];
 }

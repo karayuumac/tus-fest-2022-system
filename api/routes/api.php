@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\AdminTicketController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\TicketController;
@@ -38,6 +39,13 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/', [TicketController::class, 'index'])->name('ticket.index');
     Route::get('/{id}/send', [TicketController::class, 'send'])->name('ticket.send');
     Route::get('/{id}/stop-sharing', [TicketController::class, 'stopSharing'])->name('ticket.sharing-stop');
+  });
+
+  Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'admin'
+  ], function() {
+    Route::post('/event/{id}/scan', [AdminTicketController::class, 'scan'])->name('admin.ticket.scan');
   });
 });
 

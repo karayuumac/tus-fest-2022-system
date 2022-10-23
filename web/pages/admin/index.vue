@@ -1,64 +1,10 @@
 <template>
   <v-container fluid>
     <v-card max-width="750px" class="mx-auto">
-      <CardHeader :show-back-button="false" />
+      <CardHeader />
       <v-card-text class="font-size-normal">
-        <h3 class="text-center">
-          理大祭情報
-        </h3>
-        <v-divider class="mt-2" />
-        <v-simple-table class="pa-2">
-          <template #default>
-            <tbody>
-              <tr>
-                <td class="text-center">
-                  名称
-                </td>
-                <td class="text-center">
-                  2022年度東京理科大学野田地区理大祭
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center">
-                  開催期間
-                </td>
-                <td class="text-center">
-                  2022年11月26日（土）・27日（日）
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center">
-                  開催場所
-                </td>
-                <td class="text-center">
-                  東京理科大学 野田キャンパス<br>
-                  <a
-                    href="https://www.tus.ac.jp/access/noda_campus/"
-                    target="_blank"
-                  >
-                    アクセス情報はこちら
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-center">
-                  公式ホームページ（先行公開）
-                </td>
-                <td class="text-center">
-                  <a
-                    href="https://nodaridaisai.com/2022/pre"
-                    target="_blank"
-                  >
-                    https://nodaridaisai.com/2022/pre
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
-
         <h3 class="text-center mt-3">
-          イベント情報
+          入場スキャン
         </h3>
         <v-divider class="mt-2" />
         <v-simple-table class="pa-2">
@@ -72,14 +18,13 @@
                   開催日時
                 </th>
                 <th class="text-center">
-                  状態
+                  スキャン
                 </th>
-                <th />
               </tr>
             </thead>
             <tbody>
               <template v-for="event in events">
-                <EventTableRow
+                <EventScanTableRow
                   :key="event.getId"
                   :event="event"
                 />
@@ -87,28 +32,6 @@
             </tbody>
           </template>
         </v-simple-table>
-
-        <h3 class="text-center mt-3">
-          予約状況の確認
-        </h3>
-        <v-divider class="mt-2" />
-        <div class="mt-2 pa-2 black--text">
-          予約状況の確認では、以下のことが行えます。
-          <ul>
-            <li>予約・購入したチケットの確認</li>
-            <li>予約・購入したチケットの譲渡</li>
-          </ul>
-        </div>
-        <v-row class="mt-4 mb-2">
-          <v-btn
-            outlined
-            color="blue"
-            class="mx-auto"
-            @click="$router.push('/reserve')"
-          >
-            予約の確認はこちら
-          </v-btn>
-        </v-row>
 
         <div v-if="$auth.user.data.is_admin">
           <h3 class="text-center mt-5">
@@ -158,11 +81,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { ToasterStore } from '~/utils/store-accsessor'
 import redirectIfNotVerified from '~/middleware/redirectIfNotVerified'
 import CardHeader from '~/components/ui/CardHeader.vue'
 import EventTableRow from '~/components/ui/event/EventTableRow.vue'
 import { Event } from '~/data/Event'
+import redirectIfNotAdmin from '~/middleware/admin/redirectIfNotAdmin'
+import EventScanTableRow from '~/components/ui/admin/event/EventScanTableRow.vue'
 
 export interface EventInterface {
   id: number,
@@ -180,13 +104,13 @@ export interface EventInterface {
 }
 
 @Component({
-  components: { EventTableRow, CardHeader },
-  middleware: [redirectIfNotVerified],
+  components: { EventScanTableRow, EventTableRow, CardHeader },
+  middleware: [redirectIfNotVerified, redirectIfNotAdmin],
   head: {
     title: 'ホーム'
   }
 })
-export default class Home extends Vue {
+export default class AdminIndex extends Vue {
   events: Event[] = []
 
   mounted () {
@@ -211,16 +135,6 @@ export default class Home extends Vue {
           )
         }
       })
-  }
-
-  logout (): void {
-    this.$auth.logout()
-    ToasterStore.setToast({
-      message: 'ログアウトしました',
-      timeout: 3000,
-      color: 'success'
-    })
-    this.$router.push('/')
   }
 }
 </script>

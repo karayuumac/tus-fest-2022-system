@@ -21,7 +21,8 @@ class UserResource extends JsonResource
       'family_name_yomi' => $this->family_name_yomi,
       'given_name_yomi' => $this->given_name_yomi,
       'email' => $this->email,
-      'has_email_verified' => $this->email_verified_at !== null
+      'has_email_verified' => $this->email_verified_at !== null,
+      'is_admin' => $this->is_admin
     ];
   }
 }
