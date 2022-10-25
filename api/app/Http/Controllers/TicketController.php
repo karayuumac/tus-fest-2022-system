@@ -130,7 +130,9 @@ class TicketController extends Controller
 
     return response()->json([
       'event' => new EventResource($eloquent->event),
-      'token' => $eloquent->ticket_token
+      'token' => $eloquent->ticket_token,
+      'row' => !$eloquent->event->isFree() ? $eloquent->row : null,
+      'col' => !$eloquent->event->isFree() ? $eloquent->col : null
     ]);
   }
 }

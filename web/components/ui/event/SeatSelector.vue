@@ -1,5 +1,17 @@
 <template>
   <div>
+    <ul class="ml-2 mt-3 black--text">
+      <li>
+        購入を希望する座席をクリックして選択してください。
+        選択された座席は青色で表示されます。
+      </li>
+      <li class="mt-3 font-weight-bold blue--text">
+        座席は{{ maxSelection }}席まで購入できます。
+      </li>
+      <li class="mt-3">
+        黒色で表示された座席はすでに販売済みまたは販売されていない座席です。
+      </li>
+    </ul>
     <div id="stage">
       <div class="white--text text-center my-10 font-weight-bold">
         ステージ

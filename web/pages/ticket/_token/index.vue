@@ -48,6 +48,9 @@
           </div>
           <v-card-text>
             <div class="mt-4 mx-auto">
+              <div v-if="!data.event.isFree" class="black--text text-center text-h5 mt-2">
+                座席番号： <span class="font-weight-bold">{{ seat }}</span>
+              </div>
               <div>
                 <vue-qrcode v-if="data.token" class="d-block mx-auto" :value="data.token" :options="option" />
               </div>
@@ -90,7 +93,9 @@ import redirectIfNotValidToken from '~/middleware/ticket/redirectIfNotValidToken
 export default class Index extends Vue {
   data = {
     event: {},
-    token: ''
+    token: '',
+    row: '',
+    col: ''
   }
 
   option = {
@@ -100,6 +105,10 @@ export default class Index extends Vue {
 
   get token () {
     return this.$route.params.token
+  }
+
+  get seat () {
+    return String.fromCharCode('A'.charCodeAt(0) - 1 + parseInt(this.data.row)) + '-' + this.data.col
   }
 
   async mounted () {
@@ -121,7 +130,9 @@ export default class Index extends Vue {
             rawEvent.max_reservation_count,
             rawEvent.is_full
           ),
-          token: res.token
+          token: res.token,
+          row: res.row,
+          col: res.col
         }
       })
   }
