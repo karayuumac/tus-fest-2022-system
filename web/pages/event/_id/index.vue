@@ -62,7 +62,7 @@
 
           <v-card-text>
             <div>
-              入場の際に必要となるQRコードチケットです。最大{{ event.getMaxReservationCount }}枚（{{ event.getMaxReservationCount }}名様分）までまとめて予約・購入できます。
+              入場の際に必要となるQRコード&circledR;チケットです。最大{{ event.getMaxReservationCount }}枚（{{ event.getMaxReservationCount }}名様分）までまとめて予約・購入できます。
               <span class="blue--text font-weight-bold">
                 必ず注意事項をお読みの上、予約・購入を行ってください。
               </span>
@@ -189,7 +189,7 @@
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <ul>
-                <li>発行されるチケットはQRコード形式です。</li>
+                <li>発行されるチケットはQRコード&circledR;形式です。</li>
                 <li class="mt-3">
                   チケットは代表者様がまとめて予約・購入することも可能です。
                   <ul>
@@ -202,7 +202,7 @@
                   </ul>
                 </li>
                 <li class="mt-3">
-                  入場時、QRコードが表示された画面、または事前に画面を印刷したものを受付にてご提示ください。
+                  入場時、QRコード&circledR;が表示された画面、または事前に画面を印刷したものを受付にてご提示ください。
                 </li>
               </ul>
             </v-expansion-panel-content>
@@ -232,6 +232,15 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
+
+        <v-divider class="mt-3" />
+        <div id="change-mark">
+          <ul class="pl-4">
+            <li class="mt-3">
+              QRコードは(株)デンソーウェーブの登録商標です。
+            </li>
+          </ul>
+        </div>
       </v-card-text>
     </v-card>
   </v-container>
@@ -339,5 +348,14 @@ tr {
 
 .border {
   border: 1px solid #BDBDBD;
+}
+
+#change-mark {
+  li {
+    list-style-type: none;
+    &::before {
+      content: "※";
+    }
+  }
 }
 </style>

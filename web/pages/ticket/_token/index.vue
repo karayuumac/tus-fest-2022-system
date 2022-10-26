@@ -63,9 +63,18 @@
 
             <div class="mt-4 pa-2 black--text">
               <ul>
-                <li>当日受付にて本QRコードをご提示ください。</li>
+                <li>当日受付にて本QRコード&circledR;をご提示ください。</li>
                 <li class="mt-3">
                   同じチケットで２度以上入場することはできません。
+                </li>
+              </ul>
+            </div>
+
+            <v-divider class="mt-3" />
+            <div id="change-mark">
+              <ul class="pl-4">
+                <li class="mt-3">
+                  QRコードは(株)デンソーウェーブの登録商標です。
                 </li>
               </ul>
             </div>
@@ -170,6 +179,15 @@ html {
     -webkit-print-color-adjust: exact;
     .no-print {
       display: none;
+    }
+  }
+}
+
+#change-mark {
+  li {
+    list-style-type: none;
+    &::before {
+      content: "※";
     }
   }
 }
