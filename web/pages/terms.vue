@@ -328,6 +328,11 @@
             2022年8月24日制定
           </h5>
         </div>
+        <div class="mt-1">
+          <h5>
+            2022年10月31日改定
+          </h5>
+        </div>
       </v-card-text>
     </v-card>
   </v-container>

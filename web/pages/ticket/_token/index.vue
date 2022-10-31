@@ -64,7 +64,7 @@
             <div class="mt-4 pa-2 black--text">
               <ul>
                 <li>当日受付にて本QRコード&circledR;をご提示ください。</li>
-                <li class="mt-3">
+                <li v-if="!data.event.isFree" class="mt-3">
                   同じチケットで２度以上入場することはできません。
                 </li>
               </ul>
