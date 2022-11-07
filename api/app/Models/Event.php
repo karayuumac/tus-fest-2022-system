@@ -20,7 +20,8 @@ class Event extends Model
     'price',
     'status',
     'visible',
-    'max_reservation_count'
+    'max_reservation_count',
+    'capacity'
   ];
 
   protected $casts = [

@@ -42,20 +42,31 @@
               </tr>
               <tr>
                 <td class="text-center">
-                  公式ホームページ（先行公開）
+                  公式ホームページ
                 </td>
                 <td class="text-center">
                   <a
-                    href="https://nodaridaisai.com/2022/pre"
+                    href="https://nodaridaisai.com/2022"
                     target="_blank"
                   >
-                    https://nodaridaisai.com/2022/pre
+                    https://nodaridaisai.com/2022
                   </a>
                 </td>
               </tr>
             </tbody>
           </template>
         </v-simple-table>
+
+        <v-alert
+          class="mt-2 mb-4"
+          border="left"
+          colored-border
+          type="warning"
+          elevation="2"
+        >
+          来場予約・本予約システムに関するお問い合わせは、<a href="mailto:support@nodaridaisai.net">support@nodaridaisai.net</a>までお願いいたします。<br>
+          大学側の業務に支障をきたす恐れがございますので、<span class="font-weight-bold blue--text">東京理科大学への直接のお問い合わせはご遠慮いただきますよう</span>、ご協力をお願いいたします。
+        </v-alert>
 
         <h3 class="text-center mt-3">
           イベント情報

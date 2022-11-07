@@ -8,7 +8,14 @@
         </h3>
         <v-divider class="mt-2" />
 
-        <v-simple-table v-if="Object.keys(tickets).length !== 0" class="pa-2">
+        <div v-if="isLoading" class="text-center mt-2">
+          <v-progress-circular
+            indeterminate
+            color="blue"
+          />
+        </div>
+
+        <v-simple-table v-else-if="Object.keys(tickets).length !== 0" class="pa-2">
           <template #default>
             <thead>
               <tr>
@@ -120,6 +127,7 @@ type Responses = {
 })
 export default class Reserve extends Vue {
   tickets: Responses = {}
+  isLoading = true
 
   mounted () {
     this.$axios
@@ -146,6 +154,9 @@ export default class Reserve extends Vue {
             is_assigned: data.is_assigned
           })
         }
+      })
+      .then(() => {
+        this.isLoading = false
       })
   }
 
