@@ -26,7 +26,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon' , href: '/favicon.svg' },
+      { rel: 'icon', href: '/favicon.svg' },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Oswald:wght@700&family=Roboto&display=swap'
@@ -48,7 +48,8 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/google-gtag'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -104,7 +105,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: 'ja'
     }
   },
 
@@ -137,5 +138,10 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     loadingScreen: false
+  },
+
+  'google-gtag': {
+    id: envSettings.GOOGLE_GTAG,
+    debug: false
   }
 }

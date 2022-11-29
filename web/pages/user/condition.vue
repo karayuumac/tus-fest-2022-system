@@ -15,10 +15,16 @@
               <v-expansion-panel-header>予約の対象者</v-expansion-panel-header>
               <v-expansion-panel-content>
                 本予約の対象者は、以下の条件を全て満たす方です。
-                <ol class="mt-4">
+                <ol class="mt-4 mb-2">
                   <li>学外の方である（<span class="blue--text font-weight-bold">本学の学生・教職員ではない</span>）こと</li>
                   <li class="mt-2">
                     2022年度東京理科大学野田地区理大祭（11月26日・27日開催）に参加する予定であること
+                  </li>
+                </ol>
+                または
+                <ol class="mt-2">
+                  <li>
+                    本学の学生で、<a href="https://nodaridaisai.com/2022/RFCkikaku/entertain/" target="_blank">芸能人企画</a>をご覧になりたい方
                   </li>
                 </ol>
               </v-expansion-panel-content>

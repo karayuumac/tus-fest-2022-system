@@ -31,7 +31,7 @@
             </td>
             <td v-for="i in 7" :key="i">
               <Seat
-                v-if="row.left !== 0 && i >= (7 - row.left)"
+                v-if="row.left !== 0 && i > (7 - row.left)"
                 :row="row.name"
                 :col="i"
                 :has-sold="hasSold(row.name, i)"

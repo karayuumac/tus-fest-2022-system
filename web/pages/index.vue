@@ -71,6 +71,12 @@
                 <li class="mt-3">
                   ただし、場合により実行委員から学生証・職員証の提示を求める場合があります。
                 </li>
+                <li class="mt-3">
+                  なお、本学学生で、芸能人企画をご覧になりたい方は<span class="blue--text font-weight-bold">ユーザー登録を行った上で、「芸能人企画ライブチケット」をご購入ください。</span>
+                  <ul class="mt-3">
+                    <li>入場チケットを予約いただく必要はございません。</li>
+                  </ul>
+                </li>
               </ul>
             </v-expansion-panel-content>
           </v-expansion-panel>

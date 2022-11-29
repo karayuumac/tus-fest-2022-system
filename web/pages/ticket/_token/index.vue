@@ -21,7 +21,7 @@
             印刷
           </v-btn>
         </v-row>
-        <v-card id="ticket" min-width="400px" class="mt-4">
+        <v-card id="ticket" class="mt-4">
           <div class="ticket-header-background">
             <v-container class="ma-0">
               <v-row>

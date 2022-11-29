@@ -15,70 +15,78 @@
           />
         </div>
 
-        <v-simple-table v-else-if="Object.keys(tickets).length !== 0" class="pa-2">
-          <template #default>
-            <thead>
-              <tr>
-                <th class="text-center">
-                  チケットID
-                </th>
-                <th class="text-center">
-                  名称
-                </th>
-                <th class="text-center">
-                  開催日時
-                </th>
-                <th class="text-center">
-                  操作
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="ticket in tickets" :key="ticket.id">
-                <td class="text-center">
-                  {{ ticket.id }}
-                </td>
-                <td class="text-center">
-                  <h4>{{ ticket.event.getName }}</h4>
-                </td>
-                <EventOpeningDate
-                  :event="ticket.event"
-                />
-                <td>
-                  <div class="d-flex flex-column pa-4">
-                    <v-btn
-                      v-if="!ticket.is_assigned"
-                      class="mb-2"
-                      color="green"
-                      outlined
-                      @click="$router.push(`/ticket/${ticket.id}/send`)"
-                    >
-                      チケットを譲渡する
-                    </v-btn>
-                    <v-btn
-                      v-else
-                      class="mb-2"
-                      color="orange"
-                      outlined
-                      @click="stopSharing(ticket.id)"
-                    >
-                      チケットの譲渡をやめる
-                    </v-btn>
-                    <v-btn
-                      v-show="!ticket.is_assigned"
-                      class="mt-2"
-                      color="blue"
-                      outlined
-                      @click="$router.push(`/ticket/${ticket.ticket_token}`)"
-                    >
-                      チケットを表示する
-                    </v-btn>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </template>
-        </v-simple-table>
+        <div v-else-if="Object.keys(tickets).length !== 0" class="pa-2">
+          <v-card v-for="ticket in tickets" :key="ticket.id" min-width="250" class="mx-2 my-4">
+            <v-card-title class="font-weight-bold">
+              {{ ticket.event.getName }}（ID: {{ ticket.id }}）
+            </v-card-title>
+            <v-card-subtitle>
+              <div
+                v-if="ticket.event.isHeldSameDate"
+                class="py-3"
+              >
+                {{ ticket.event.stringBeginDay }}<br>
+                {{ ticket.event.stringBeginTime }}〜{{ ticket.event.stringEndTime }}
+              </div>
+              <div
+                v-else
+                class="py-3"
+              >
+                {{ ticket.event.stringBeginDay }} {{ ticket.event.stringBeginTime }}<br>
+                〜{{ ticket.event.stringEndDay }} {{ ticket.event.stringEndTime }}
+              </div>
+            </v-card-subtitle>
+            <v-card-text>
+              <v-row class="mx-4 mb-2">
+                <v-col
+                  cols="12"
+                  lg="6"
+                  class="d-flex justify-center"
+                >
+                  <v-btn
+                    v-if="!ticket.is_assigned"
+                    color="green"
+                    outlined
+                    @click="$router.push(`/ticket/${ticket.id}/send`)"
+                  >
+                    チケットを譲渡する
+                  </v-btn>
+                  <v-btn
+                    v-else
+                    color="orange"
+                    outlined
+                    @click="stopSharing(ticket.id)"
+                  >
+                    チケットの譲渡をやめる
+                  </v-btn>
+                </v-col>
+                <v-col
+                  cols="12"
+                  lg="6"
+                  class="d-flex justify-center"
+                >
+                  <v-btn
+                    v-if="!ticket.is_assigned"
+                    color="blue"
+                    outlined
+                    @click="$router.push(`/ticket/${ticket.ticket_token}`)"
+                  >
+                    チケットを表示する
+                  </v-btn>
+                  <v-btn
+                    v-else
+                    color="blue"
+                    disabled
+                    outlined
+                    @click="$router.push(`/ticket/${ticket.ticket_token}`)"
+                  >
+                    譲渡チケットは表示できません
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </div>
 
         <div v-else class="text-center mt-4">
           予約・購入済みのチケットはありません

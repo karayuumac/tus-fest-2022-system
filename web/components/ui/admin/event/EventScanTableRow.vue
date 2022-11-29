@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td class="text-center">
+    <td class="text-center event-name-style">
       <h4>{{ event.getName }}</h4>
     </td>
     <EventOpeningDate
@@ -35,5 +35,7 @@ export default class EventTableRow extends Vue {
 </script>
 
 <style scoped>
-
+.event-name-style {
+  min-width: 150px;
+}
 </style>
